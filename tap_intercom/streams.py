@@ -224,6 +224,7 @@ class ConversationsStream(IntercomStream):
 class ConversationPartsStream(IntercomStream):
     name = "conversation_parts"
     parent_stream_type = ConversationsStream
+    state_partitioning_keys = []
     path = "/conversations/{conversation_id}"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
