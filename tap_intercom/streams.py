@@ -239,10 +239,7 @@ class ConversationPartsStream(IntercomStream):
         Property("notified_at", IntegerType),
         Property(
             "assigned_to",
-            ObjectType(
-                Property("type", StringType),
-                Property("id", StringType),
-            ),
+            ObjectType(Property("type", StringType), Property("id", StringType), additional_properties=False),
         ),
         Property(
             "author",
