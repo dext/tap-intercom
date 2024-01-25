@@ -244,6 +244,7 @@ class ConversationPartsStream(IntercomStream):
                 Property("id", StringType),
             ),
         ),
+        Property("assigned_to", StringType),
         Property(
             "author",
             ObjectType(
