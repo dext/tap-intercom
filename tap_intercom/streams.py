@@ -214,6 +214,7 @@ class ConversationsStream(IntercomStream):
                 ),
             ),
         ),
+        additional_properties=False,
     ).to_dict()
 
     def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict:
@@ -266,6 +267,7 @@ class ConversationPartsStream(IntercomStream):
         ),
         Property("external_id", StringType),
         Property("redacted", BooleanType),
+        additional_properties=False,
     ).to_dict()
 
 
