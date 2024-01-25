@@ -214,7 +214,6 @@ class ConversationsStream(IntercomStream):
                 ),
             ),
         ),
-        additional_properties=False,
     ).to_dict()
 
     def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict:
@@ -240,7 +239,10 @@ class ConversationPartsStream(IntercomStream):
         Property("notified_at", IntegerType),
         Property(
             "assigned_to",
-            ObjectType(Property("type", StringType), Property("id", StringType), additional_properties=False),
+            ObjectType(
+                Property("type", StringType),
+                Property("id", StringType),
+            ),
         ),
         Property(
             "author",
@@ -267,7 +269,6 @@ class ConversationPartsStream(IntercomStream):
         ),
         Property("external_id", StringType),
         Property("redacted", BooleanType),
-        additional_properties=False,
     ).to_dict()
 
 
