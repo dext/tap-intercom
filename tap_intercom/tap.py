@@ -38,9 +38,17 @@ class TapIntercom(Tap):
         return [
             streams.ConversationsStream(self),
             streams.ConversationPartsStream(self),
+            streams.CollectionsStream(self),
+            streams.ContactsListStream(self),
+            streams.ContactsStream(self),
             streams.AdminsStream(self),
+            streams.ArticlesStream(self),
+            streams.EventsStream(self),
             streams.TagsStream(self),
             streams.TeamsStream(self),
+            streams.TicketsListStream(self),
+            streams.TicketsStream(self),
+            streams.SegmentsStream(self),
         ]
 
 
