@@ -469,6 +469,7 @@ class ContactsStream(IntercomStream):
         th.Property("utm_term", th.StringType),
         th.Property("referrer", th.StringType),
     ).to_dict()
+
 class CollectionsStream(IntercomStream):
     name = "collections"
     path = "/help_center/collections"
@@ -595,20 +596,6 @@ class TeamsStream(IntercomStream):
     ).to_dict()
 
 
-class TagsStream(IntercomStream):
-    name = "tags"
-    path = "/tags"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
-    records_jsonpath = "$.data[*]"
-    schema = PropertiesList(
-        Property("id", IntegerType),
-        Property("direct_link", StringType),
-        Property("name", StringType),
-        Property("color", StringType),
-        Property("description", StringType),
-    ).to_dict()
-
-
 class TicketsListStream(IntercomStream):
     name = "tickets_list"
     path = "/tickets/search"
@@ -679,7 +666,6 @@ class TicketsStream(IntercomStream):
     path = "/tickets/{ticket_id}"
     primary_keys: t.ClassVar[list[str]] = ["ticket_id"]
     replication_key = "updated_at"
-    # records_jsonpath = "$.tickets[*]"
 
     schema = th.PropertiesList(
         th.Property("type", th.StringType),
