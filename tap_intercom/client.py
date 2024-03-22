@@ -35,6 +35,7 @@ from singer_sdk.pagination import BaseHATEOASPaginator
 class IntercomPaginator(BaseHATEOASPaginator):
     def get_next_url(self, response):
         data = response.json().get("pages", {})
+
         if data.get("next") is not None:
             if "starting_after" in data.get("next"):
                 return data.get("next").get("starting_after")
@@ -58,22 +59,16 @@ class IntercomStream(RESTStream):
 
 
     def get_url_params(self, context, next_page_token):
-        self.logger.info(80 * '*')
-        self.logger.info(f"Next page token: {next_page_token}")
-        self.logger.info(80 * '*')
         params = {}
         if self.rest_method == "GET":
             params = {"per_page": 150}
 
             if next_page_token:
                 page_token = dict(parse_qsl(next_page_token.query))
-                self.logger.info(80 * '*')
-                self.logger.info(f"Next page token: {page_token}")
-                self.logger.info(80 * '*')
                 if "page" in page_token:
                     params["page"] = page_token["page"]
                 else:
-                    params["starting_after"] = next_page_token
+                    params["starting_after"] = next_page_token.path
         return params
 
     def get_new_paginator(self) -> BaseOffsetPaginator:
@@ -112,14 +107,12 @@ class IntercomStream(RESTStream):
         if self.rest_method == "POST":
             body = {"sort": {"field": "updated_at", "order": "ascending"}}
             start_date = self.config.get("start_date")
-            self.logger.info(f"Start date: {start_date}")
             if start_date:
                 if type(start_date) == str:
                     start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
                 body["query"] = {"field": "updated_at", "operator": ">", "value": start_date}
             if next_page_token:
-                body["pagination"] = {"per_page": 150, "starting_after": next_page_token}
-            self.logger.info(f"Request payload: {body}")
+                body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
             return body
         else:
             return None
