@@ -28,7 +28,7 @@ class ConversationsStream(IntercomStream):
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
     records_jsonpath = "$.conversations[*]"
-    rest_method = "POST"
+    rest_method = "GET"
 
     schema = PropertiesList(
         Property("type", StringType),
