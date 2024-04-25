@@ -24,7 +24,7 @@ from tap_intercom.client import IntercomStream
 
 class ConversationsStream(IntercomStream):
     name = "conversations"
-    path = "/conversations/search"
+    path = "/conversations"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
     records_jsonpath = "$.conversations[*]"
