@@ -62,7 +62,9 @@ class ContentExportStream(IntercomStream):
             'Accept': 'application/json'},
             json=payload
         )
-        return response.json()["job_identifier"]
+        r = response.json().get("job_identifier")
+        print('----------- JOB IDENTIFIER -----------\n', r)
+        return response.json().get("job_identifier")
 
     def get_payload(self):
         start_date = self.config.get("start_date")

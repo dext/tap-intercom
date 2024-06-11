@@ -34,6 +34,7 @@ class TapIntercom(Tap):
         th.Property(
             "base_url",
             th.StringType,
+            default="https://api.intercom.io",
             description="The base URL for the Intercom API",
         ),
     ).to_dict()
