@@ -46,7 +46,7 @@ class TapIntercom(Tap):
         """
         return [
             streams.ContentExportStream(self),
-            streams.DownloadExportStream(self),
+            # streams.DownloadExportStream(self),
         ]
 
 

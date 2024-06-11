@@ -23,39 +23,17 @@ from tap_intercom.client import IntercomStream
 
 import requests
 import time
+from datetime import datetime
 import os
 
+import zipfile
 
 class ContentExportStream(IntercomStream):
     """Define custom stream to fetch job_identifier."""
     name = "content_export"
-    path = "/export/content/data"
-    rest_method = "POST"
 
-    schema = th.PropertiesList(
-        th.Property("job_identifier", th.StringType),
-        th.Property("status", th.StringType),
-        th.Property("download_url", th.StringType),
-        th.Property("download_expires_at", th.StringType),
-    ).to_dict()
-
-    def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict:
-        """Return a context dictionary for child streams."""
-        return {"job_identifier": record["job_identifier"]}
-
-
-class DownloadExportStream(IntercomStream):
-    """Define custom stream that downloads content data."""
-    name = "data_export"
-    parent_stream_type = ContentExportStream
-    path = "/download/content/data/{job_identifier}"
-    ignore_parent_replication_keys = True
-    rest_method = "GET"
-
-    def sync(self, context):
-
-        self.logger.info(f"CONTEXT: {context}")
-        job_identifier = context.get("job_identifier")
+    def sync(self):
+        job_identifier = self.request_content_export()
 
         while True:
             status = self.check_status(job_identifier)
@@ -63,16 +41,45 @@ class DownloadExportStream(IntercomStream):
             if status == 'completed':
                 break
             else:
-                time.sleep(30)
+                time.sleep(10)
 
         url = f"{self.config['base_url']}/download/content/data/{job_identifier}"
         self.logger.info(f"DOWNLOAD PATH: {url}")
         response = requests.get(url, headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/octet-stream'})
 
         self.check_folder('temp_intercom_data')
-
-        with open(f'temp_intercom_data/intercom_data_{time.time()}.gzip', 'wb') as file:
+        file_name = f'intercom_data_{time.time()}.zip'
+        with open(f'temp_intercom_data/{file_name}', 'wb') as file:
             file.write(response.content)
+            self.decompress_gzip(f'temp_intercom_data/{file_name}')
+            self.delete_zipfile(f'temp_intercom_data/{file_name}')
+
+    def request_content_export(self):
+        payload = self.get_payload()
+        response = requests.post(
+            f"{self.config['base_url']}/export/content/data",
+            headers={'Authorization': f'Bearer {self.config.get("access_token")}',
+            'Accept': 'application/json'},
+            json=payload
+        )
+        return response.json()["job_identifier"]
+
+    def get_payload(self):
+        start_date = self.config.get("start_date")
+        if start_date:
+            if type(start_date) == str:
+                start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
+                self.logger.info(f"start_date: {start_date}")
+        end_date = self.config.get("end_date")
+        if end_date:
+            if type(end_date) == str:
+                end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
+                self.logger.info(f"end_date: {end_date}")
+        payload = {
+                "created_at_after": start_date,
+                "created_at_before": end_date
+                }
+        return payload
 
     def check_status(self, job_identifier: str) -> str:
         response = requests.get(
@@ -85,8 +92,10 @@ class DownloadExportStream(IntercomStream):
             os.makedirs(folder)
 
     def decompress_gzip(self, file_path: str):
-        with gzip.open(file_path, 'rb') as f_in:
-            with open(file_path.replace('.gzip', ''), 'wb') as f_out:
-                shutil.copyfileobj(f_in, f_out)
+        with zipfile.ZipFile(file_path, 'r') as zip_ref:
+            zip_ref.extractall('temp_intercom_data')
+
+    def delete_zipfile(self, file_path: str):
+        os.remove(file_path)
 
     schema = th.PropertiesList().to_dict()
