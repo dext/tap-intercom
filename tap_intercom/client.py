@@ -22,6 +22,8 @@ from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.streams import RESTStream
 from singer_sdk.pagination import BaseOffsetPaginator
 
+import requests
+
 
 if sys.version_info >= (3, 8):
     from functools import cached_property
@@ -30,17 +32,6 @@ else:
 
 _Auth = Callable[[requests.PreparedRequest], requests.PreparedRequest]
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
-
-from singer_sdk.pagination import BaseHATEOASPaginator
-class IntercomPaginator(BaseHATEOASPaginator):
-    def get_next_url(self, response):
-        data = response.json().get("pages", {})
-
-        if data.get("next") is not None:
-            if "starting_after" in data.get("next"):
-                return data.get("next").get("starting_after")
-            return data.get("next")
-
 
 class IntercomStream(RESTStream):
     """Intercom stream class."""
@@ -57,39 +48,14 @@ class IntercomStream(RESTStream):
         """Return the authenticator."""
         return BearerTokenAuthenticator.create_for_stream(self, token=self.config.get("access_token"))
 
-
-    def get_url_params(self, context, next_page_token):
-        params = {}
-        if self.rest_method == "GET":
-            params = {"per_page": 150}
-
-            if next_page_token:
-                page_token = dict(parse_qsl(next_page_token.query))
-                if "page" in page_token:
-                    params["page"] = page_token["page"]
-                else:
-                    params["starting_after"] = next_page_token.path
-        return params
-
-    def get_new_paginator(self) -> BaseOffsetPaginator:
-        """Create a new pagination helper instance.
-
-        If the source API can make use of the `next_page_token_jsonpath`
-        attribute, or it contains a `X-Next-Page` header in the response
-        then you can remove this method.
-
-        If you need custom pagination that uses page numbers, "next" links, or
-        other approaches, please read the guide: https://sdk.meltano.com/en/v0.25.0/guides/pagination-classes.html.
-
-        Returns:
-            A pagination helper instance.
-        """
-        return IntercomPaginator()
+    @property
+    def timeout(self):
+        return 400
 
     def prepare_request_payload(
-        self,
-        context: dict | None,
-        next_page_token: _TToken | None,
+    self,
+    context: dict | None,
+    next_page_token: Any | None,
     ) -> dict | None:
         """Prepare the data payload for the REST API request.
 
@@ -105,14 +71,20 @@ class IntercomStream(RESTStream):
                 next page of data.
         """
         if self.rest_method == "POST":
-            body = {"sort": {"field": "updated_at", "order": "ascending"}}
             start_date = self.config.get("start_date")
             if start_date:
                 if type(start_date) == str:
                     start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
-                body["query"] = {"field": "updated_at", "operator": ">", "value": start_date}
-            if next_page_token:
-                body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
-            return body
-        else:
-            return None
+                    self.logger.info(f"start_date: {start_date}")
+            end_date = self.config.get("end_date")
+            if end_date:
+                if type(end_date) == str:
+                    end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
+                    self.logger.info(f"end_date: {end_date}")
+            payload = {
+                    "created_at_after": start_date,
+                    "created_at_before": end_date
+                    }
+            return payload
+        return None
+
