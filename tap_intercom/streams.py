@@ -7,6 +7,7 @@ import requests
 from pathlib import Path
 from typing import Iterable
 
+import singer_sdk
 from singer_sdk import typing as th  # JSON Schema typing helpers
 from singer_sdk.typing import (
     IntegerType,
@@ -34,7 +35,7 @@ class ContentExportStream(IntercomStream):
 
     def sync(self):
         job_identifier = self.request_content_export()
-
+        print('----------- JOB IDENTIFIER -----------\n', job_identifier)
         while True:
             status = self.check_status(job_identifier)
             print('----------- STATUS -----------\n', status)
@@ -43,16 +44,34 @@ class ContentExportStream(IntercomStream):
             else:
                 time.sleep(10)
 
-        url = f"{self.config['base_url']}/download/content/data/{job_identifier}"
-        self.logger.info(f"DOWNLOAD PATH: {url}")
-        response = requests.get(url, headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/octet-stream'})
+        self.download_export(job_identifier)
 
-        self.check_folder('temp_intercom_data')
-        file_name = f'intercom_data_{time.time()}.zip'
-        with open(f'temp_intercom_data/{file_name}', 'wb') as file:
-            file.write(response.content)
-            self.decompress_gzip(f'temp_intercom_data/{file_name}')
-            self.delete_zipfile(f'temp_intercom_data/{file_name}')
+        streams = os.listdir('temp_intercom_data')
+
+        for stream in streams:
+            stream_id = stream
+            for record in self.get_records(stream):
+                self._write_record_message(record)
+        # record = self.get_records()
+
+        # os.system("rm -rf temp_intercom_data")
+        # self.logger.info(f"RECORD: {record}")
+        # while True:
+        #     yield record
+
+
+    def get_records(self, stream: str):
+        with open(f'temp_intercom_data/{stream}', 'r') as current_file:
+            first_line = current_file.readline()
+            self.logger.info(f"FIRST LINE: {first_line}")
+
+            columns = first_line.strip().split(',')
+            self.logger.info(f"COLUMNS: {columns}")
+
+            for line in current_file:
+                print('----------- LINE -----------\n', line)
+                yield dict(zip(columns, line.strip().split(',')))
+
 
     def request_content_export(self):
         payload = self.get_payload()
@@ -63,7 +82,6 @@ class ContentExportStream(IntercomStream):
             json=payload
         )
         r = response.json().get("job_identifier")
-        print('----------- JOB IDENTIFIER -----------\n', r)
         return response.json().get("job_identifier")
 
     def get_payload(self):
@@ -86,10 +104,25 @@ class ContentExportStream(IntercomStream):
     def check_status(self, job_identifier: str) -> str:
         response = requests.get(
             f"{self.config['base_url']}/export/content/data/{job_identifier}",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/json'})
+            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/json'}
+        )
         return response.json()["status"]
 
-    def check_folder(self, folder):
+    def download_export(self, job_identifier: str):
+        response = requests.get(
+            f"{self.config['base_url']}/download/content/data/{job_identifier}",
+            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/octet-stream'}
+        )
+
+        self.check_folder('temp_intercom_data')
+
+        file_name = f'intercom_data_{time.time()}.zip'
+        with open(f'temp_intercom_data/{file_name}', 'wb') as file:
+            file.write(response.content)
+            self.decompress_gzip(f'temp_intercom_data/{file_name}')
+            self.delete_zipfile(f'temp_intercom_data/{file_name}')
+
+    def check_folder(self, folder: str):
         if not os.path.exists(folder):
             os.makedirs(folder)
 
