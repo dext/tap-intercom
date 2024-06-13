@@ -26,7 +26,7 @@ class ConversationsStream(IntercomStream):
     name = "conversations"
     path = "/conversations/search"
     primary_keys: t.ClassVar[list[str]] = ["id"]
-    replication_key = "updated_at"
+    replication_key = "created_at"
     records_jsonpath = "$.conversations[*]"
     rest_method = "POST"
 
