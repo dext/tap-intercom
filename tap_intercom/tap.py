@@ -5,8 +5,9 @@ from __future__ import annotations
 from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 
-from tap_intercom import streams
+from tap_intercom.streams import ContentExportStream
 
+import json
 
 class TapIntercom(Tap):
     """Intercom tap class."""
@@ -45,10 +46,28 @@ class TapIntercom(Tap):
         Returns:
             A list of discovered streams.
         """
-        return [
-            streams.ContentExportStream(self),
-            # streams.DownloadExportStream(self),
+        schemas = {
+            "answer": self.load_schema("answer.json"),
+            "answer_combined": self.load_schema("answer_combined.json"),
+            "completion": self.load_schema("completion.json"),
+            "overview": self.load_schema("overview.json"),
+            "receipt": self.load_schema("receipt.json"),
+            "reply": self.load_schema("reply.json"),
+        }
+        streams = [
+            ContentExportStream(name="answer", schema=schemas["answer"], tap=self),
+            ContentExportStream(name="answer_combined", schema=schemas["answer_combined"], tap=self),
+            ContentExportStream(name="completion", schema=schemas["completion"], tap=self),
+            ContentExportStream(name="overview", schema=schemas["overview"], tap=self),
+            ContentExportStream(name="receipt", schema=schemas["receipt"], tap=self),
+            ContentExportStream(name="reply", schema=schemas["reply"], tap=self),
         ]
+        return streams
+
+    def load_schema(self, stream_name: str) -> dict:
+        """Load the schema for a given stream."""
+        with open(f'/Users/daniela.angelova/projects/tap-intercom/tap_intercom/schemas/{stream_name}', 'r') as file:
+            return json.load(file)
 
 
 if __name__ == "__main__":

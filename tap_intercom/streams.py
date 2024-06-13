@@ -9,6 +9,7 @@ from typing import Iterable
 
 import singer_sdk
 from singer_sdk import typing as th  # JSON Schema typing helpers
+from singer_sdk.streams import Stream
 from singer_sdk.typing import (
     IntegerType,
     StringType,
@@ -29,9 +30,11 @@ import os
 
 import zipfile
 
+SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class ContentExportStream(IntercomStream):
     """Define custom stream to fetch job_identifier."""
-    name = "content_export"
+    def __init__(self, name, schema, *args, **kwargs):
+        super().__init__(name=name, *args, **kwargs)
 
     def sync(self):
         job_identifier = self.request_content_export()
@@ -49,28 +52,46 @@ class ContentExportStream(IntercomStream):
         streams = os.listdir('temp_intercom_data')
 
         for stream in streams:
-            stream_id = stream
-            for record in self.get_records(stream):
-                self._write_record_message(record)
-        # record = self.get_records()
+
+            self.name = stream.split('_')[0]
+            stream_id = stream.split('_')[0]
+
+            self.logger.info(50 * "*")
+            self.logger.info(f"STREAM: {stream}")
+            self.logger.info(selected)
+            self.logger.info(50 * "*")
+
+
+
+        #     for record in self.get_records(stream):
+
+        #         self._write_record_message(record)
+        #         if "completed_at" in record:
+        #             self.stream_state[stream_id] = record["completed_at"]
+        #         self._write_state_message()
 
         # os.system("rm -rf temp_intercom_data")
-        # self.logger.info(f"RECORD: {record}")
-        # while True:
-        #     yield record
 
 
     def get_records(self, stream: str):
         with open(f'temp_intercom_data/{stream}', 'r') as current_file:
             first_line = current_file.readline()
-            self.logger.info(f"FIRST LINE: {first_line}")
-
             columns = first_line.strip().split(',')
-            self.logger.info(f"COLUMNS: {columns}")
 
             for line in current_file:
-                print('----------- LINE -----------\n', line)
                 yield dict(zip(columns, line.strip().split(',')))
+
+    # def write_schema(self, stream: str):
+    #     with open(f'temp_intercom_data/{stream}', 'r') as current_file:
+    #         first_line = current_file.readline()
+    #         columns = first_line.strip().split(',')
+    #         properties = []
+    #         for column in columns:
+    #             properties.append(Property(column, StringType))
+
+    #         with open(f'/Users/daniela.angelova/projects/tap-intercom/tap_intercom/schemas/{stream}.json', 'w') as file:
+    #             file.write(PropertiesList(*properties).to_json())
+    #         return PropertiesList(*properties).to_dict()
 
 
     def request_content_export(self):
@@ -133,4 +154,4 @@ class ContentExportStream(IntercomStream):
     def delete_zipfile(self, file_path: str):
         os.remove(file_path)
 
-    schema = th.PropertiesList().to_dict()
+

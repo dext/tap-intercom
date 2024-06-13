@@ -37,6 +37,10 @@ class IntercomStream(RESTStream):
     """Intercom stream class."""
 
     @property
+    def schema_filepath(self) -> Path:
+        return SCHEMAS_DIR / f"{self.name}.json"
+
+    @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
         return "https://api.intercom.io"
