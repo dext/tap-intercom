@@ -105,12 +105,28 @@ class IntercomStream(RESTStream):
                 next page of data.
         """
         if self.rest_method == "POST":
-            body = {"sort": {"field": "updated_at", "order": "ascending"}}
+            # payload = {
+            #     "query": {
+            #         "operator": "AND",
+            #         "value": [
+            #         {
+            #             "field": "created_at",
+            #             "operator": ">",
+            #             "value": "1306054154"
+            #         }
+            #         ]
+            #     },
+            #     "pagination": {
+            #         "per_page": 5
+            #     }
+            # }
+
+            body = {"sort": {"field": "created_at", "order": "ascending"}}
             start_date = self.config.get("start_date")
             if start_date:
                 if type(start_date) == str:
                     start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
-                body["query"] = {"field": "updated_at", "operator": ">", "value": start_date}
+                body["query"] = {"field": "created_at", "operator": ">", "value": start_date}
             if next_page_token:
                 body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
             return body
