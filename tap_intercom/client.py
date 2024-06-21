@@ -35,6 +35,11 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 class IntercomStream(RESTStream):
     """Intercom stream class."""
+    def __init__(self, name, replication_key, *args, **kwargs):
+        self.name = name
+        self.replication_key = replication_key
+        super().__init__(*args, **kwargs)
+
 
     @property
     def schema_filepath(self) -> Path:

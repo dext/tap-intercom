@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from singer_sdk.helpers._util import utc_now
+
 import typing as t
 import requests
 from pathlib import Path
@@ -25,76 +27,51 @@ from tap_intercom.client import IntercomStream
 
 import requests
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
+import re
 
 import zipfile
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class ContentExportStream(IntercomStream):
     """Define custom stream to fetch job_identifier."""
-    def __init__(self, name, schema, *args, **kwargs):
-        super().__init__(name=name, *args, **kwargs)
+    replication_method = "INCREMENTAL"
+    replication_key = None
 
-    def sync(self):
-        job_identifier = self.request_content_export()
-        print('----------- JOB IDENTIFIER -----------\n', job_identifier)
-        while True:
-            status = self.check_status(job_identifier)
-            print('----------- STATUS -----------\n', status)
-            if status == 'completed':
-                break
-            else:
-                time.sleep(10)
+    def get_records(self, context):
+        self.request_content_export()
+        stream_filename = self.get_filename()
 
-        self.download_export(job_identifier)
-
-        streams = os.listdir('temp_intercom_data')
-
-        for stream in streams:
-
-            self.name = stream.split('_')[0]
-            stream_id = stream.split('_')[0]
-
-            self.logger.info(50 * "*")
-            self.logger.info(f"STREAM: {stream}")
-            self.logger.info(selected)
-            self.logger.info(50 * "*")
-
-
-
-        #     for record in self.get_records(stream):
-
-        #         self._write_record_message(record)
-        #         if "completed_at" in record:
-        #             self.stream_state[stream_id] = record["completed_at"]
-        #         self._write_state_message()
-
-        # os.system("rm -rf temp_intercom_data")
-
-
-    def get_records(self, stream: str):
-        with open(f'temp_intercom_data/{stream}', 'r') as current_file:
+        with open(f'/tmp/intercom_data/{stream_filename}', 'r') as current_file:
             first_line = current_file.readline()
             columns = first_line.strip().split(',')
 
             for line in current_file:
-                yield dict(zip(columns, line.strip().split(',')))
+                if line != '':
+                    yield dict(zip(columns, line.strip().split(',')))
 
-    # def write_schema(self, stream: str):
-    #     with open(f'temp_intercom_data/{stream}', 'r') as current_file:
-    #         first_line = current_file.readline()
-    #         columns = first_line.strip().split(',')
-    #         properties = []
-    #         for column in columns:
-    #             properties.append(Property(column, StringType))
-
-    #         with open(f'/Users/daniela.angelova/projects/tap-intercom/tap_intercom/schemas/{stream}.json', 'w') as file:
-    #             file.write(PropertiesList(*properties).to_json())
-    #         return PropertiesList(*properties).to_dict()
-
+        current_time = self.hour_rounder(utc_now()).isoformat()
+        self._tap.state['bookmarks'][self.name] = {'replication_key': self.replication_key, 'replication_key_value': current_time}
+        # self._tap.write_state()
 
     def request_content_export(self):
+        self.check_folder('/tmp/intercom_data')
+        if not os.listdir('/tmp/intercom_data'):
+            job_identifier = self.get_job_identifier()
+
+            while True:
+                status = self.check_status(job_identifier)
+                self.logger.info(f"Status for job_identifier({job_identifier}): {status}")
+
+                if status == 'completed':
+                    break
+                else:
+                    time.sleep(10)
+
+            self.download_export(job_identifier)
+
+    def get_job_identifier(self):
         payload = self.get_payload()
         response = requests.post(
             f"{self.config['base_url']}/export/content/data",
@@ -110,12 +87,12 @@ class ContentExportStream(IntercomStream):
         if start_date:
             if type(start_date) == str:
                 start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
-                self.logger.info(f"start_date: {start_date}")
+                # self.logger.info(f"start_date: {start_date}")
         end_date = self.config.get("end_date")
         if end_date:
             if type(end_date) == str:
                 end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
-                self.logger.info(f"end_date: {end_date}")
+                # self.logger.info(f"end_date: {end_date}")
         payload = {
                 "created_at_after": start_date,
                 "created_at_before": end_date
@@ -135,23 +112,31 @@ class ContentExportStream(IntercomStream):
             headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/octet-stream'}
         )
 
-        self.check_folder('temp_intercom_data')
-
-        file_name = f'intercom_data_{time.time()}.zip'
-        with open(f'temp_intercom_data/{file_name}', 'wb') as file:
+        file_name = f'tmp_intercom_data.zip'
+        with open(f'/tmp/intercom_data/{file_name}', 'wb') as file:
             file.write(response.content)
-            self.decompress_gzip(f'temp_intercom_data/{file_name}')
-            self.delete_zipfile(f'temp_intercom_data/{file_name}')
+            self.logger.info("Files have been downloaded")
+            self.decompress_zip(f'/tmp/intercom_data/{file_name}')
+            self.delete_zipfile(f'/tmp/intercom_data/{file_name}')
 
     def check_folder(self, folder: str):
         if not os.path.exists(folder):
             os.makedirs(folder)
 
-    def decompress_gzip(self, file_path: str):
+    def decompress_zip(self, file_path: str):
         with zipfile.ZipFile(file_path, 'r') as zip_ref:
-            zip_ref.extractall('temp_intercom_data')
+            zip_ref.extractall('/tmp/intercom_data/')
 
     def delete_zipfile(self, file_path: str):
         os.remove(file_path)
 
+    def get_filename(self):
+        files = os.listdir('/tmp/intercom_data/')
+        for file in files:
+            if re.match(self.name + r'_\d{8}-\d{6}\.csv', file):
+                return file
+
+    def hour_rounder(self, timestamp):
+        return (timestamp.replace(second=0, microsecond=0, minute=0, hour=timestamp.hour)
+                +timedelta(hours=timestamp.minute//30))
 

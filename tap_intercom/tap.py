@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
+import typing as t
 
 from tap_intercom.streams import ContentExportStream
 
-import json
-
+import os
 class TapIntercom(Tap):
     """Intercom tap class."""
 
@@ -46,28 +46,22 @@ class TapIntercom(Tap):
         Returns:
             A list of discovered streams.
         """
-        schemas = {
-            "answer": self.load_schema("answer.json"),
-            "answer_combined": self.load_schema("answer_combined.json"),
-            "completion": self.load_schema("completion.json"),
-            "overview": self.load_schema("overview.json"),
-            "receipt": self.load_schema("receipt.json"),
-            "reply": self.load_schema("reply.json"),
-        }
+
         streams = [
-            ContentExportStream(name="answer", schema=schemas["answer"], tap=self),
-            ContentExportStream(name="answer_combined", schema=schemas["answer_combined"], tap=self),
-            ContentExportStream(name="completion", schema=schemas["completion"], tap=self),
-            ContentExportStream(name="overview", schema=schemas["overview"], tap=self),
-            ContentExportStream(name="receipt", schema=schemas["receipt"], tap=self),
-            ContentExportStream(name="reply", schema=schemas["reply"], tap=self),
+            ContentExportStream(name="answer", replication_key="answered_at", tap=self),
+            ContentExportStream(name="answer_combined", replication_key="completed_at", tap=self),
+            ContentExportStream(name="completion", replication_key="completed_at", tap=self),
+            ContentExportStream(name="overview", replication_key="created_at", tap=self),
+            ContentExportStream(name="receipt", replication_key="recieved_at", tap=self),
+            ContentExportStream(name="reply", replication_key="replyed_at", tap=self),
         ]
         return streams
 
-    def load_schema(self, stream_name: str) -> dict:
-        """Load the schema for a given stream."""
-        with open(f'/Users/daniela.angelova/projects/tap-intercom/tap_intercom/schemas/{stream_name}', 'r') as file:
-            return json.load(file)
+
+    @t.final
+    def sync_all(self) -> None:
+        super().sync_all()
+        # os.system("rm -rf /tmp/intercom_data")
 
 
 if __name__ == "__main__":
