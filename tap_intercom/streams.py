@@ -40,7 +40,7 @@ class ContentExportStream(IntercomStream):
     replication_key = None
 
     def get_records(self, context):
-        self.request_content_export()
+        self.request_content_export(context)
         stream_filename = self.get_filename()
 
         with open(f'/tmp/intercom_data/{stream_filename}', 'r') as current_file:
@@ -55,10 +55,10 @@ class ContentExportStream(IntercomStream):
         self._tap.state['bookmarks'][self.name] = {'replication_key': self.replication_key, 'replication_key_value': current_time}
         # self._tap.write_state()
 
-    def request_content_export(self):
+    def request_content_export(self, context):
         self.check_folder('/tmp/intercom_data')
         if not os.listdir('/tmp/intercom_data'):
-            job_identifier = self.get_job_identifier()
+            job_identifier = self.get_job_identifier(context)
 
             while True:
                 status = self.check_status(job_identifier)
@@ -71,8 +71,8 @@ class ContentExportStream(IntercomStream):
 
             self.download_export(job_identifier)
 
-    def get_job_identifier(self):
-        payload = self.get_payload()
+    def get_job_identifier(self, context):
+        payload = self.get_payload(context)
         response = requests.post(
             f"{self.config['base_url']}/export/content/data",
             headers={'Authorization': f'Bearer {self.config.get("access_token")}',
@@ -82,17 +82,19 @@ class ContentExportStream(IntercomStream):
         r = response.json().get("job_identifier")
         return response.json().get("job_identifier")
 
-    def get_payload(self):
-        start_date = self.config.get("start_date")
+    def get_payload(self, context):
+        start_date = self.get_starting_replication_key_value(context)
         if start_date:
             if type(start_date) == str:
                 start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
-                # self.logger.info(f"start_date: {start_date}")
+
         end_date = self.config.get("end_date")
-        if end_date:
-            if type(end_date) == str:
-                end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
-                # self.logger.info(f"end_date: {end_date}")
+        if not end_date:
+            end_date = int(datetime.timestamp(utc_now()))
+
+        if type(end_date) == str:
+            end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
+
         payload = {
                 "created_at_after": start_date,
                 "created_at_before": end_date
