@@ -27,6 +27,11 @@ class TapIntercom(Tap):
             th.DateTimeType,
             description="The earliest record date to sync",
         ),
+        th.Property(
+            "end_date",
+            th.DateTimeType,
+            description="The latest record date to sync",
+        ),
     ).to_dict()
 
     def discover_streams(self) -> list[streams.IntercomStream]:

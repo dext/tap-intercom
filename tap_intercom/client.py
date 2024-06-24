@@ -106,18 +106,24 @@ class IntercomStream(RESTStream):
         """
         if self.rest_method == "POST":
             body = {"sort": {"field": "updated_at", "order": "ascending"}}
+            value = []
             start_date = self.config.get("start_date")
             if start_date:
                 if type(start_date) == str:
                     start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
-                body["query"] = {"field": "updated_at", "operator": ">", "value": start_date}
+                value = [{"field": "updated_at", "operator": ">", "value": start_date}]
             end_date = self.config.get("end_date")
             if end_date:
                 if type(end_date) == str:
                     end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
-                body["query"] = {"field": "updated_at", "operator": "<", "value": end_date}
+                value.append({"field": "updated_at", "operator": "<", "value": end_date})
+            body["query"] = {"operator": "AND", "value": value}
+
             if next_page_token:
                 body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
+            self.logger.info(50 * '-')
+            self.logger.info(f"Request body: {body}")
+            self.logger.info(50 * '-')
             return body
         else:
             return None
