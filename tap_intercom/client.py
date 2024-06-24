@@ -111,6 +111,11 @@ class IntercomStream(RESTStream):
                 if type(start_date) == str:
                     start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
                 body["query"] = {"field": "updated_at", "operator": ">", "value": start_date}
+            end_date = self.config.get("end_date")
+            if end_date:
+                if type(end_date) == str:
+                    end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
+                body["query"] = {"field": "updated_at", "operator": "<", "value": end_date}
             if next_page_token:
                 body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
             return body
