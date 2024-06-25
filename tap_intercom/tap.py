@@ -61,7 +61,7 @@ class TapIntercom(Tap):
     @t.final
     def sync_all(self) -> None:
         super().sync_all()
-        # os.system("rm -rf /tmp/intercom_data")
+        os.system("rm -rf /tmp/intercom_data")
 
 
 if __name__ == "__main__":

@@ -79,6 +79,9 @@ class ContentExportStream(IntercomStream):
             'Accept': 'application/json'},
             json=payload
         )
+        self.logger.info(50 * "-")
+        self.logger.info(response.json())
+        self.logger.info(50 * "-")
         r = response.json().get("job_identifier")
         return response.json().get("job_identifier")
 
@@ -127,7 +130,7 @@ class ContentExportStream(IntercomStream):
 
     def decompress_zip(self, file_path: str):
         with zipfile.ZipFile(file_path, 'r') as zip_ref:
-            zip_ref.extractall('/tmp/intercom_data/')
+            zip_ref.extractall("/tmp/intercom_data/")
 
     def delete_zipfile(self, file_path: str):
         os.remove(file_path)
@@ -141,4 +144,3 @@ class ContentExportStream(IntercomStream):
     def hour_rounder(self, timestamp):
         return (timestamp.replace(second=0, microsecond=0, minute=0, hour=timestamp.hour)
                 +timedelta(hours=timestamp.minute//30))
-
