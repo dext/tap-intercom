@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"receipt_id": {"type": ["string", "null"]}, "disengaged_at": {"type": ["string", "null"]}, "disengaged_node_ruleset_id": {"type": ["string", "null"]}}}

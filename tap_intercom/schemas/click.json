@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"receipt_id": {"type": ["string", "null"]}, "clicked_at": {"type": ["string", "null"]}, "link_type": {"type": ["string", "null"]}, "url": {"type": ["string", "null"]}}}
