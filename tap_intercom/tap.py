@@ -41,9 +41,7 @@ class TapIntercom(Tap):
     ).to_dict()
 
     def discover_streams(self) -> list[streams.IntercomStream]:
-        """Return a list of discovered streams.
-
-        Returns:
+        """Returns:
             A list of discovered streams.
         """
 
@@ -52,8 +50,8 @@ class TapIntercom(Tap):
             ContentExportStream(name="answer_combined", replication_key="completed_at", tap=self),
             ContentExportStream(name="completion", replication_key="completed_at", tap=self),
             ContentExportStream(name="overview", replication_key="created_at", tap=self),
-            ContentExportStream(name="receipt", replication_key="recieved_at", tap=self),
-            ContentExportStream(name="reply", replication_key="replyed_at", tap=self),
+            ContentExportStream(name="receipt", replication_key="received_at", tap=self),
+            ContentExportStream(name="reply", replication_key="replied_at", tap=self),
         ]
         return streams
 
