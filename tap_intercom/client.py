@@ -29,7 +29,7 @@ else:
     from cached_property import cached_property
 
 _Auth = Callable[[requests.PreparedRequest], requests.PreparedRequest]
-SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
+
 
 from singer_sdk.pagination import BaseHATEOASPaginator
 class IntercomPaginator(BaseHATEOASPaginator):
@@ -51,6 +51,8 @@ class IntercomStream(RESTStream):
         return "https://api.intercom.io"
 
     records_jsonpath = "$[*]"  # Or override `parse_response`.
+
+
 
     @property
     def authenticator(self):
@@ -121,9 +123,7 @@ class IntercomStream(RESTStream):
 
             if next_page_token:
                 body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
-            self.logger.info(50 * '-')
-            self.logger.info(f"Request body: {body}")
-            self.logger.info(50 * '-')
             return body
         else:
             return None
+

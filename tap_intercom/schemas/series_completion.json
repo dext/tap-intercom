@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"receipt_id": {"type": ["string", "null"]}, "completed_at": {"type": ["string", "null"]}, "completion_node_ruleset_id": {"type": ["string", "null"]}}}

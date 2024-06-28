@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"receipt_id": {"type": ["string", "null"]}, "dismissed_at": {"type": ["string", "null"]}}}
