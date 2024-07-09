@@ -815,6 +815,9 @@ class ContentExportStream(IntercomStream):
     def get_payload(self, context):
         start_date = self.get_starting_replication_key_value(context)
 
+        self.logger.info(f"Start date: {start_date}")
+        self.logger.info(f"End date: {self.config.get('end_date')}")
+
         if type(start_date) == str:
             start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
 
@@ -836,6 +839,9 @@ class ContentExportStream(IntercomStream):
             f"{self.config['base_url']}/export/content/data/{job_identifier}",
             headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/json'}
         )
+        self.logger.info(50 * '=')
+        self.logger.info(response.json())
+        self.logger.info(50 * '=')
         return response.json()["status"]
 
     def download_export(self, job_identifier: str):
