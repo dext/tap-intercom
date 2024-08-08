@@ -35,6 +35,9 @@ from singer_sdk.pagination import BaseHATEOASPaginator
 class IntercomPaginator(BaseHATEOASPaginator):
     def get_next_url(self, response):
         data = response.json().get("pages", {})
+        self.logger.info(50 * "-")
+        self.logger.info(f"Data: {data}")
+        self.logger.info(50 * "-")
 
         if data.get("next") is not None:
             if "starting_after" in data.get("next"):
