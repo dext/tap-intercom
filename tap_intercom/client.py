@@ -71,6 +71,9 @@ class IntercomStream(RESTStream):
                     params["page"] = page_token["page"]
                 else:
                     params["starting_after"] = next_page_token.path
+        self.logger.info(50 * "-")
+        self.logger.info(f"Params: {params}")
+        self.logger.info(50 * "-")
         return params
 
     def get_new_paginator(self) -> BaseOffsetPaginator:
@@ -123,6 +126,10 @@ class IntercomStream(RESTStream):
 
             if next_page_token:
                 body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
+
+            self.logger.info(50 * "-")
+            self.logger.info(f"Request body: {body}")
+            self.logger.info(50 * "-")
             return body
         else:
             return None
