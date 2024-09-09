@@ -8,6 +8,7 @@ import typing as t
 import requests
 from pathlib import Path
 from typing import Iterable
+import csv
 
 import singer_sdk
 from singer_sdk import typing as th  # JSON Schema typing helpers
@@ -777,10 +778,12 @@ class ContentExportStream(IntercomStream):
             with open(f'/tmp/intercom_data/{stream_filename}', 'r') as current_file:
                 first_line = current_file.readline()
                 columns = first_line.strip().split(',')
+                self.logger.info(f"Columns: {columns}")
 
-                for line in current_file:
+                reader = csv.reader(current_file)
+                for line in reader:
                     if line != '':
-                        yield dict(zip(columns, line.strip().split(',')))
+                        yield dict(zip(columns, line))
 
             current_time = self.hour_rounder(utc_now()).strftime("%Y-%m-%dT%H:%M:%SZ")
             self._tap.state['bookmarks'][self.name] = {'replication_key': self.replication_key, 'replication_key_value': current_time}
