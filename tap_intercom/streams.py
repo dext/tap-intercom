@@ -292,9 +292,10 @@ class ConversationPartsStream(IntercomStream):
 
 class ContactsListStream(IntercomStream):
     name = "contacts_list"
-    path = "/contacts"
+    path = "/contacts/search"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     records_jsonpath = "$.data[*]"
+    rest_method = "POST"
 
     schema = th.PropertiesList(
         th.Property("type", th.StringType),

@@ -125,7 +125,7 @@ class IntercomStream(RESTStream):
             body["query"] = {"operator": "AND", "value": value}
 
             if next_page_token:
-                body["pagination"] = {"per_page": 150, "starting_after": next_page_token.path}
+                body["pagination"] = {"per_page": 20, "starting_after": next_page_token.path}
 
             self.logger.info(50 * "-")
             self.logger.info(f"Request body: {body}")
