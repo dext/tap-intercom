@@ -243,7 +243,7 @@ class ConversationPartsStream(IntercomStream):
     parent_stream_type = ConversationsStream
     state_partitioning_keys = []
     path = "/conversations/{conversation_id}"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
+    # primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
     records_jsonpath = "$.conversation_parts.conversation_parts[*]"
 
