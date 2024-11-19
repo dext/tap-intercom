@@ -45,14 +45,18 @@ class IntercomPaginator(BaseHATEOASPaginator):
 class IntercomStream(RESTStream):
     """Intercom stream class."""
 
+    def __init__(self, name, primary_keys, replication_key, *args, **kwargs):
+        self.primary_keys = primary_keys
+        self.name = name
+        self.replication_key = replication_key
+        super().__init__(*args, **kwargs)
+
+    records_jsonpath = "$[*]"  # Or override `parse_response`.
+
     @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
         return "https://api.intercom.io"
-
-    records_jsonpath = "$[*]"  # Or override `parse_response`.
-
-
 
     @property
     def authenticator(self):
