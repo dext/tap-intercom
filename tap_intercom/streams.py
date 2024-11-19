@@ -34,13 +34,27 @@ import re
 
 import zipfile
 
+REPLICATION_KEY_MAPPING = {
+"answer": "answered_at",
+"answer_combined": "completed_at",
+"checkpoint": "created_at",
+"click": "clicked_at",
+"completion": "completed_at",
+"dismissal": "dismissed_at",
+"open": "opened_at",
+"overview": "created_at",
+"receipt": "received_at",
+"reply": "replied_at",
+"series_completion": "completed_at",
+"series_disengagement": "disengaged_at",
+"tour_step_view": "viewed_at",
+}
 
 
 
 class ConversationsStream(IntercomStream):
     name = "conversations"
     path = "/conversations/search"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
     records_jsonpath = "$.conversations[*]"
     rest_method = "POST"
@@ -243,7 +257,6 @@ class ConversationPartsStream(IntercomStream):
     parent_stream_type = ConversationsStream
     state_partitioning_keys = []
     path = "/conversations/{conversation_id}"
-    # primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
     records_jsonpath = "$.conversation_parts.conversation_parts[*]"
 
@@ -293,7 +306,6 @@ class ConversationPartsStream(IntercomStream):
 class ContactsListStream(IntercomStream):
     name = "contacts_list"
     path = "/contacts/search"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     records_jsonpath = "$.data[*]"
     rest_method = "POST"
 
@@ -381,7 +393,6 @@ class ContactsStream(IntercomStream):
     parent_stream_type = ContactsListStream
     state_partitioning_keys = []
     path = "/contacts/{contact_id}"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
 
     schema = th.PropertiesList(
@@ -489,7 +500,6 @@ class ContactsStream(IntercomStream):
 class CollectionsStream(IntercomStream):
     name = "collections"
     path = "/help_center/collections"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
     records_jsonpath = "$.data[*]"
 
@@ -511,7 +521,6 @@ class CollectionsStream(IntercomStream):
 class EventsStream(IntercomStream):
     name = "events"
     path = "/events"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     records_jsonpath = "$.events[*]"
 
     schema = th.PropertiesList(
@@ -529,7 +538,6 @@ class EventsStream(IntercomStream):
 class AdminsStream(IntercomStream):
     name = "admins"
     path = "/admins"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     records_jsonpath = "$.admins[*]"
 
     schema = PropertiesList(
@@ -556,7 +564,6 @@ class AdminsStream(IntercomStream):
 class ArticlesStream(IntercomStream):
     name = "articles"
     path = "/articles"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = "updated_at"
     records_jsonpath = "$.data[*]"
 
@@ -581,7 +588,6 @@ class ArticlesStream(IntercomStream):
 class TagsStream(IntercomStream):
     name = "tags"
     path = "/tags"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     records_jsonpath = "$.data[*]"
     schema = PropertiesList(
         Property("type", StringType),
@@ -595,7 +601,6 @@ class TagsStream(IntercomStream):
 class TeamsStream(IntercomStream):
     name = "teams"
     path = "/teams"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     records_jsonpath = "$.teams[*]"
     schema = PropertiesList(
         Property("type", StringType),
@@ -615,7 +620,6 @@ class TeamsStream(IntercomStream):
 class TicketsListStream(IntercomStream):
     name = "tickets_list"
     path = "/tickets/search"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     rest_method = "POST"
     records_jsonpath = "$.tickets[*]"
 
@@ -680,7 +684,6 @@ class TicketsStream(IntercomStream):
     parent_stream_type = TicketsListStream
     state_partitioning_keys = []
     path = "/tickets/{ticket_id}"
-    primary_keys: t.ClassVar[list[str]] = ["ticket_id"]
     replication_key = "updated_at"
 
     schema = th.PropertiesList(
@@ -738,11 +741,9 @@ class TicketsStream(IntercomStream):
     ).to_dict()
 
 
-
 class SegmentsStream(IntercomStream):
     name = "segments"
     path = "/segments"
-    primary_keys: t.ClassVar[list[str]] = ["id"]
     records_jsonpath = "$.segments[*]"
 
     schema = PropertiesList(
@@ -757,11 +758,6 @@ class SegmentsStream(IntercomStream):
 
 class ContentExportStream(IntercomStream):
     """Define custom stream to fetch job_identifier."""
-
-    def __init__(self, name, replication_key, *args, **kwargs):
-        self.name = name
-        self.replication_key = replication_key
-        super().__init__(*args, **kwargs)
 
     replication_method = "INCREMENTAL"
     replication_key = None
@@ -787,8 +783,7 @@ class ContentExportStream(IntercomStream):
                         yield dict(zip(columns, line))
 
             current_time = self.hour_rounder(utc_now()).strftime("%Y-%m-%dT%H:%M:%SZ")
-            self._tap.state['bookmarks'][self.name] = {'replication_key': self.replication_key, 'replication_key_value': current_time}
-
+            self._tap.state['bookmarks'][self.name] = {'replication_key': REPLICATION_KEY_MAPPING[self.name], 'replication_key_value': current_time}
 
     def request_content_export(self, context):
         self.check_folder('/tmp/intercom_data')

@@ -45,6 +45,12 @@ class IntercomPaginator(BaseHATEOASPaginator):
 class IntercomStream(RESTStream):
     """Intercom stream class."""
 
+    def __init__(self, name, primary_keys, *args, **kwargs):
+        self.primary_keys = primary_keys
+        self.name = name
+        super().__init__(*args, **kwargs)
+
+
     @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
