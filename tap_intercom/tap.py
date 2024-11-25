@@ -6,9 +6,72 @@ from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 import typing as t
 
-from tap_intercom import streams
-
 import os
+
+from tap_intercom.streams import (
+    ContentExportStream,
+    ConversationsStream,
+    ConversationPartsStream,
+    CollectionsStream,
+    ContactsListStream,
+    ContactsStream,
+    AdminsStream,
+    ArticlesStream,
+    EventsStream,
+    TagsStream,
+    TeamsStream,
+    TicketsListStream,
+    TicketsStream,
+    SegmentsStream,
+)
+
+STREAMS_DCT = {
+    "conversations": ConversationsStream,
+    "conversation_parts": ConversationPartsStream,
+    "collections": CollectionsStream,
+    "contacts_list": ContactsListStream,
+    "contacts": ContactsStream,
+    "admins": AdminsStream,
+    "articles": ArticlesStream,
+    "events": EventsStream,
+    "tags": TagsStream,
+    "teams": TeamsStream,
+    "tickets_list": TicketsListStream,
+    "tickets": TicketsStream,
+    "segments": SegmentsStream,
+}
+
+CONTENT_EXPORT_STREAMS = {
+    "answer": ContentExportStream,
+    "answer_combined": ContentExportStream,
+    "checkpoint": ContentExportStream,
+    "click": ContentExportStream,
+    "completion": ContentExportStream,
+    "dismissal": ContentExportStream,
+    "open": ContentExportStream,
+    "overview": ContentExportStream,
+    "receipt": ContentExportStream,
+    "reply": ContentExportStream,
+    "series_completion": ContentExportStream,
+    "series_disengagement": ContentExportStream,
+    "tour_step_view": ContentExportStream,
+}
+
+REPLICATION_KEY_MAPPING = {
+    "conversations": "updated_at",
+    "conversation_parts": "updated_at",
+    "contacts_list": None,
+    "contacts": "updated_at",
+    "collections": "updated_at",
+    "events": None,
+    "admins": None,
+    "articles": "updated_at",
+    "tags": None,
+    "teams": None,
+    "tickets_list": None,
+    "tickets": "updated_at",
+    "segments": None,
+}
 class TapIntercom(Tap):
     """Intercom tap class."""
 
@@ -45,35 +108,40 @@ class TapIntercom(Tap):
             A list of discovered streams.
         """
 
-        return [
-            streams.ContentExportStream(name="answer", replication_key="answered_at", tap=self),
-            streams.ContentExportStream(name="answer_combined", replication_key="completed_at", tap=self),
-            streams.ContentExportStream(name="checkpoint", replication_key="created_at", tap=self),
-            streams.ContentExportStream(name="click", replication_key="clicked_at", tap=self),
-            streams.ContentExportStream(name="completion", replication_key="completed_at", tap=self),
-            streams.ContentExportStream(name="dismissal", replication_key="dismissed_at", tap=self),
-            streams.ContentExportStream(name="open", replication_key="opened_at", tap=self),
-            streams.ContentExportStream(name="overview", replication_key="created_at", tap=self),
-            streams.ContentExportStream(name="receipt", replication_key="received_at", tap=self),
-            streams.ContentExportStream(name="reply", replication_key="replied_at", tap=self),
-            streams.ContentExportStream(name="series_completion", replication_key="completed_at", tap=self),
-            streams.ContentExportStream(name="series_disengagement", replication_key="disengaged_at", tap=self),
-            streams.ContentExportStream(name="tour_step_view", replication_key="viewed_at", tap=self),
-            streams.ConversationsStream(self),
-            streams.ConversationPartsStream(self),
-            streams.CollectionsStream(self),
-            streams.ContactsListStream(self),
-            streams.ContactsStream(self),
-            streams.AdminsStream(self),
-            streams.ArticlesStream(self),
-            streams.EventsStream(self),
-            streams.TagsStream(self),
-            streams.TeamsStream(self),
-            streams.TicketsListStream(self),
-            streams.TicketsStream(self),
-            streams.SegmentsStream(self),
+        streams = [
+            ContentExportStream(name="answer", primary_keys=[], replication_key="answered_at", tap=self),
+            ContentExportStream(name="answer_combined", primary_keys=[], replication_key="completed_at", tap=self),
+            ContentExportStream(name="checkpoint", primary_keys=[], replication_key="created_at", tap=self),
+            ContentExportStream(name="click", primary_keys=[], replication_key="clicked_at", tap=self),
+            ContentExportStream(name="completion", primary_keys=[], replication_key="completed_at", tap=self),
+            ContentExportStream(name="dismissal", primary_keys=[], replication_key="dismissed_at", tap=self),
+            ContentExportStream(name="open", primary_keys=[], replication_key="opened_at", tap=self),
+            ContentExportStream(name="overview", primary_keys=[], replication_key="created_at", tap=self),
+            ContentExportStream(name="receipt", primary_keys=[], replication_key="received_at", tap=self),
+            ContentExportStream(name="reply", primary_keys=[], replication_key="replied_at", tap=self),
+            ContentExportStream(name="series_completion", primary_keys=[], replication_key="completed_at", tap=self),
+            ContentExportStream(name="series_disengagement", primary_keys=[], replication_key="disengaged_at", tap=self),
+            ContentExportStream(name="tour_step_view", primary_keys=[], replication_key="viewed_at", tap=self),
         ]
 
+        primary_keys = {}
+
+        if "primary_keys" in self.config:
+            primary_keys = self.config.get("primary_keys")
+
+        for stream_name in STREAMS_DCT.keys():
+            stream_class = STREAMS_DCT[stream_name]
+            replication_key = REPLICATION_KEY_MAPPING[stream_name]
+
+            pk = []
+
+            if (len(primary_keys) > 0) and (stream_name in primary_keys):
+                pk = primary_keys[stream_name]
+
+            stream = stream_class(tap=self, name=stream_name, primary_keys=pk, replication_key=replication_key)
+            streams.append(stream)
+
+        return streams
 
     @t.final
     def sync_all(self) -> None:
