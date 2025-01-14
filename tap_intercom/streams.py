@@ -480,6 +480,13 @@ class ContactsStream(IntercomStream):
         th.Property("referrer", th.StringType),
     ).to_dict()
 
+    def sync(self, context: dict):
+        try:
+            super().sync(context)
+        except Exception as e:
+            self.logger.error(f"Error fetching contacts: {e}")
+
+
 class CollectionsStream(IntercomStream):
     name = "collections"
     path = "/help_center/collections"
@@ -786,12 +793,14 @@ class ContentExportStream(IntercomStream):
 
     def get_job_identifier(self, context):
         payload = self.get_payload(context)
+        self.logger.info(payload)
         response = requests.post(
             f"{self.config['base_url']}/export/content/data",
             headers={'Authorization': f'Bearer {self.config.get("access_token")}',
             'Accept': 'application/json'},
             json=payload
         )
+        self.logger.info(response.json())
         return response.json().get("job_identifier")
 
     def get_payload(self, context):
@@ -814,6 +823,7 @@ class ContentExportStream(IntercomStream):
                 "created_at_after": start_date,
                 "created_at_before": end_date
                 }
+        self.logger.info(payload)
         return payload
 
     def check_status(self, job_identifier: str) -> str:
