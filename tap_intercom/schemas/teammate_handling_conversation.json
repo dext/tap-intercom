@@ -1,0 +1,521 @@
+{
+  "type": "object",
+  "properties": {
+    "handling_teammate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "teammate_handling_time": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "teammate_handling_time_in_office_hours": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "currently_assigned_teammate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reply_participant_teammate_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "channel": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_started_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_tag_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "currently_assigned_team_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_started_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_location_continent_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_location_country_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_manual_tag_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_role": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_pseudonym": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Customer reports": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Ticket category": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Copilot used": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Imported via standalone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Language": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Auto-translated": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "External ID": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent: Preview": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Tone of Voice": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Answer Length": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Pronoun Formality": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Workflow: Preview": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent resolution state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Last outbound call state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Workspace phone number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Merged": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent: Action used in reply": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent: Fin workflow used": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Topic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Subtopic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Issue summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Query Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Brand": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Created by app package code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Replying from WhatsApp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Slack workspace": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Slack channel": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "# bookkeeping clients": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "admin_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Selected Category": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area to improve:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Category": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Accounting Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Active Team": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Expense Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Sales Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Connection Name:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Conversation Summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Details": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Dext Product": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Did you sort this with your Account Manager?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Disable auto-notifications:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Empty VM?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalated to AM?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalated to Specialist:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalation Notes:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalation Reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Feature Request (Prepare/Precision):": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin Reporting": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "GBP Approved refund amount:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "GBP Refund amount field:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Partner Churn Reason:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Points \u00e0 am\u00e9liorer :": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare Category I:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare Category II:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare Duplicate:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Refund request?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_case_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_owner_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_response_message": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_response_outcome": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "SF Account ID": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "SF Contact ID": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Support agent name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Thank you reply?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Was the issue resolved?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,4097 @@
+{
+  "type": "object",
+  "properties": {
+    "conversation_rating_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_rating_updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_rating": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_rating_remark": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_survey_sent_action_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rated_teammate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rated_chatbot_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rated_agent_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rating_participant_teammate_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rating_participant_chatbot_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rating_participant_fin_ai_agent": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rating_participant_agent_group": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "channel": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_tag_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_started_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "currently_assigned_teammate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reply_participant_teammate_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_conversation_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "currently_assigned_team_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ticket_type_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fin_ai_agent_participated": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fin_ai_agent_last_sent_answer_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fin_ai_agent_content_references": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first_closing_teammate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first_replying_teammate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_first_response_time": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first_response_time_excluding_bot_inbox": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first_response_time_excluding_bot_inbox_in_office_hours": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first_response_time_in_office_hours": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conversation_started_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_closing_teammate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "topics": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_location_continent_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_location_country_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_manual_tag_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_role": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_pseudonym": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "company_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "company_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "company_plan_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "company_size": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "company_manual_tag_ids": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_role.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "article_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Csat Overall Experience": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_owner_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_owner_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_owner_email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_owner_role": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_title": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_lead_source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "country": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Sf Account Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Record Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Parent Account": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Lead Source detail": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "plan": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timezone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "company_crn": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "CSat Feedback": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "team_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "team_created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "plan_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest Precision NPS score": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest Precision NPS feedback": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "self_assessment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User created date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_country": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest Prepare NPS score": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest Prepare NPS Feedback": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest Commerce NPS score": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest Commerce NPS feedback": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare_usage_frequency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare_purchase_decision": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Aircall Tags": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Referral code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Product CSAT Score v1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Product CSAT v1 Feedback": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_user_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_user_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_user_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_user_created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_user_updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_team_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_team_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_team_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_team_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_team_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_team_member_count": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_client_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_client_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_client_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_subscription_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_subscription_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_subscription_intent": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_subscription_payment_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_subscription_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_subscription_created_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_subscription_updated_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_entitlements_bulk_export": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_entitlements_auto_export": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_entitlements_catch_me_up": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_entitlements_csv": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_accounting_integrations": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_sales_integrations": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_expenses_integrations": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_firm_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_firm_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commerce_firm_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "unification_opted_in": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "experience": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest CSAT Score": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Latest CSAT Feedback": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Email Opt Out": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "research_unsubscribed": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "unification_invited": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Receive marketing campaigns": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fr_ebics_supplier": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Hubspot Intercom Notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has left AppStore review": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "direct_survey_multi_entity": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "campaign_attended": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "campaign_registered": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "campaign_recent_update": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "trial_nonconversion_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hubspot_workflow": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hubspot_stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "active_partner_companies": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "active_partner_companies_updated": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "active_client_companies": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "active_client_companies_updated": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "active_direct_companies": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "active_direct_companies_updated": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oct2025_promo_eligible_user": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sf_account_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_segmentation_industry_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_segmentation_use_cases": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Product Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "RB Account Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Franchise company": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Nature of Client": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Practice Clients": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Dext Platform Status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Method of Sign-up": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Tier of Firm": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Country RB": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Dext Platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Precision Product Status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Precision Subscription Status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Product Status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Reseller Partnership": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payment Provider": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Renewal Date confirmed": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Trail end date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Last Invoice Amount": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Last invoice MRR": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Last Invoice Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Date of First Subscription": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commitment Term": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commitment Start Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commitment End Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commitment Renewal Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Dates until Renewal": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ITSA Product Status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare product status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Recordtype Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Billing Street": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Billing City": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Billing state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Billing postcode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Billing Country": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Precision Trial Started At": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Precision Account Created Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_group_Accounting_software_integration_primary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_Account_solo_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_solo_product_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_group_Secondary_Accounting_Software_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_demo_account": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_dext_platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_precision_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_Prepare_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_affected_account_precision_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_affected_account_prepare_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_partner_account_precision_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_partner_account_prepare_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_prepare_product_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_affected_account_prepare_product_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_partner_account_prepare_product_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_affected_account_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment Base": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "creation_source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_segmentation_company_role": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_segmentation_company_size": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_segmentation_discovered_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_created_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_prepare_billing_platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Segment_account_precision_billing_platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "segment_affected_account_crn": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Success Owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_first_subscription_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_created_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "segment_account_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_country": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_currency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_internal_test_account": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_internal_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_product_modules": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_product_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_product_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_sales_region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_self_paying": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_solo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_solo_business_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_unification_stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_backup_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_billing_platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_country": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_currency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_demo_account": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_first_subscription_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_internal_test_account": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_internal_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_primary_software_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_product_modules": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_product_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_product_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_sales_region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_secondary_software_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_self_paying": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_solo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_solo_business_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_unification_stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "precision_product_access": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prepare_product_access": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_backup_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_billing_platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "segment_account_country": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_product_modules": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_segmentation_use_cases": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_segmentation_used_software": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "initiating_source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_primary_software_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_product_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_product_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_product_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_sales_region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_secondary_software_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_self_paying": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_solo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_solo_business_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_unification_stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_backup_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_billing_platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_country": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_created_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_crn": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_currency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_demo_account": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_first_subscription_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_internal_test_account": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "partner_account_internal_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_secondary_software_integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affected_account_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_created_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has added at least one user": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Users": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "30-Day Item Submitted Volume": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "30-Day Login Volume": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Used Mobile Submission - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Used Web or Email Submission - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Published Items - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Exported Items - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Added Rule - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Created Expense Report - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Created Approval Workflow - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Created Mileage Claim - 30d": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has used Autopublish": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has used Autoexpense": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Current Tenure": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has used Vault": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has used Bank Statements": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has used Supplier Statements": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Has used Bank Feed": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oct2025_promo_eligible_partner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oct2025_promo_feature": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oct2025_promo_savings": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oct2025_promo_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oct2025_promo_cohort_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Imported via standalone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Auto-translated": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "External ID": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent: Preview": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Tone of Voice": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Answer Length": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Pronoun Formality": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Workflow: Preview": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent resolution state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Last outbound call state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Workspace phone number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Merged": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent: Action used in reply": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin AI Agent: Fin workflow used": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Topic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Subtopic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Issue summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Query Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Brand": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Created by app package code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Replying from WhatsApp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Slack workspace": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Slack channel": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "# bookkeeping clients": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "admin_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AI Selected Category": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area to improve:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Category": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Accounting Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Active Team": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Expense Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Sales Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Connection Name:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Conversation Summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Details": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Dext Product": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Did you sort this with your Account Manager?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Disable auto-notifications:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Empty VM?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalated to AM?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalated to Specialist:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalation Notes:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Escalation Reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Feature Request (Prepare/Precision):": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fin Reporting": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "GBP Approved refund amount:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "GBP Refund amount field:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Partner Churn Reason:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Points \u00e0 am\u00e9liorer :": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare Category I:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare Category II:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare Duplicate:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Refund request?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_case_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_owner_id.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_response_message": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "salesforce_response_outcome": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "SF Contact ID": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Support agent name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Thank you reply?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Was the issue resolved?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "What have you done so far?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Case number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier name and connection": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier URL": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Error message": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Used Force Fetch (Yes/No)?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Customer ID:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Credential ID:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Fetch Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Integration name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Specialist Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Bank Account Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Raised with Plaid (Y/N)": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Bank Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Date the plan renewed": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Refund Request (Yes/No)?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Type of plan": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Date the plan renewed:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Cancellation reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Charity Reg Number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Billing Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Sync issue": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "integration error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cancel request": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "upgrade transaction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Sales": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce - Technical": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Subscription Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce - Onboarding": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Data Extraction Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Platform & Web app Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.7": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.7": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Adoption Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.8": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.8": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Data Protection Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.9": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.9": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "MYOB Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.10": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.10": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "QBO Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.11": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.11": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.7": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Xero Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.12": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Specialist Name.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.12": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Select Integration": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.7": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.8": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ApprovalMax & WorkflowMax Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.13": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.13": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Affected Account CRN:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Integration Admin CRN:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Desktop Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.14": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.14": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Select Integration.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.9": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.8": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Integrations Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.15": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Cancellation Request": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.15": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Churn Risk": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce - Billing": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.16": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.16": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Select Integration.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.9": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.10": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR ApprovalMax & WorkflowMax": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.17": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.17": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.11": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.10": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Bank Account Name.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Raised with Plaid (Y/N) FR": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Bank": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.18": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.18": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.12": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.7": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Data Extraction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.19": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Refund Request (Yes/No)?.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.19": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Type of plan.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Date the plan renewed.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Cancellation reason.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Charity Reg Number.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Direct Billing": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.20": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.20": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Case number.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.11": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier name and connection.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier URL.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Error message.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Used Force Fetch (Yes/No)?.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Fetch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.21": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.21": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.12": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.13": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Legal": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.22": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.22": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.14": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.7": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.13": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.23": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.23": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.15": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.14": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.8": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR QBO": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.24": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.24": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN.16": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name.8": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.15": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Platform / Web app": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.25": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.25": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Type.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce - Engineering": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.26": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Your Email Address:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.26": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Client Name / CRN:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Workflow Link (if relevant):": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Data Health & Insights": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.27": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.27": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce - Cancellation Request": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.28": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.28": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Integration.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Affected Account CRN:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Integration Admin CRN:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item ID.9": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR Desktop": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.29": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.29": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Technical Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.30": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.30": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare ENG Incident": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.31": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.31": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "1tap Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.32": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.32": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN:.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Error messages:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Email-in address:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Folder name:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item Submission Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.33": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.33": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN:.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Email-in address:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Folder name:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Error messages:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Test 2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Test": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Pav test": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Pat test 3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Intercom test (Do not use)": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.34": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.34": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Error messages:.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN:.4": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Email-in address:.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Folder name:.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Item Submission FR": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.35": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.35": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Prepare FR Incident": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.36": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Define the start date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Does tax data exists on supported integrations?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Tax Transforms Applied": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Duplicate transforms applied?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.36": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Business Overview": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Current Solution": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Is this a VIP client or partner?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "All accounts been connected?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Create a start date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Registered for Taxes?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Accurate tax data on supported integrations?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Add comments surrounding tax data on selected integrations": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Duplicate transforms required?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Additional transforms implemented": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Chart of accounts created & confirmed?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Products/services, classes & tracking categories complete?": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Review of general export preferences": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Mappings - contact mappings": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Onboarding": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.37": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.37": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Name of the affected account:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Type of income source:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Accounting method:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "SOLO Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.38": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.38": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.7": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Name of the affected account:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Type of income source:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Accounting method:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR SOLO": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.39": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.39": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area.5": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Name:.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.8": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.16": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier name and connection.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier URL.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Error message.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Used Force Fetch (Yes/No)?.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Customer ID:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Credential ID:.1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "API & Commerce Lite Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.40": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.40": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Case number.2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Area.6": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account CRN:.9": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User CRN.17": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier name and connection.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Supplier URL.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Error message.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Used Force Fetch (Yes/No)?.3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FR API & Commerce Lite": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.41": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.41": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "User ID:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Team name:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Name:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Email:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "CRN:": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Commerce Pro Experts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_title_.42": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "_default_description_.42": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Experts Techniques": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Customer reports": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Ticket category": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Copilot used": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

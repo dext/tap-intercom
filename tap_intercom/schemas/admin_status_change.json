@@ -1,0 +1,32 @@
+{"type": "object", "properties": {
+  "teammate_status_period_started_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_status_period_ended_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_away_reason": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_status_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  }
+}}

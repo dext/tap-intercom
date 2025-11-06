@@ -1,0 +1,416 @@
+{"type": "object", "properties": {
+  "conversation_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_started_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_first_closed_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_first_teammate_reply_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_conversation_rating_updated_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_rating_updated_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "channel": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_teammate_rating": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_teammate_rating_remark": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_rating": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_rating_remark": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "current_conversation_state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_tag_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_participated": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "agent_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_first_response_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "first_response_time_excluding_bot_inbox": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "first_response_time_excluding_bot_inbox_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "first_response_time_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_started_by": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "currently_assigned_team_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "currently_assigned_team_raw_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "currently_assigned_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "currently_assigned_teammate_raw_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "reply_participant_teammate_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_rated_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_rated_teammate_raw_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_last_sent_answer_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_resolution_state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_deflected": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_content_references": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "first_closing_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "first_replying_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_closing_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "ticket_type_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "topics": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_call_types": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "call_participant_teammate_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_has_calls": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_handling_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_from_first_assignment_to_close": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_from_first_assignment_to_close_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "reassignments_count": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_replies_count": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_to_close_excluding_bot_inbox": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_to_close_excluding_bot_inbox_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_to_close_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_time_to_close": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_to_first_close": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_to_first_close_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_to_first_close_excluding_bot_inbox": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "time_to_first_close_excluding_bot_inbox_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_replies_to_close": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_chatbot_rating_updated_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_chatbot_rating": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_chatbot_rating_remark": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_rated_chatbot_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "is_resolved_on_first_contact": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Category": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Area": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Details": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Support agent name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Dext Product": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalated to Specialist:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalation Reason": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalated to AM?": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalation Notes:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "language": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Copilot used": {
+    "type": [
+      "string",
+      "null"
+    ]
+  }
+}}
