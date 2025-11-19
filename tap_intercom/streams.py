@@ -487,6 +487,84 @@ class ContactsStream(IntercomStream):
             self.logger.error(f"Error fetching contacts: {e}")
 
 
+class CallsListStream(IntercomStream):
+    name = "calls_list"
+    path = "/calls"
+    records_jsonpath = "$.data[*]"
+
+    schema = th.PropertiesList(
+        th.Property("type", th.StringType),
+        th.Property("id", th.StringType),
+        th.Property("conversation_id", th.StringType),
+        th.Property("admin_id", th.StringType),
+        th.Property("contact_id", th.StringType),
+        th.Property("state", th.StringType),
+        th.Property("initiated_at", th.StringType),
+        th.Property("answered_at", th.StringType),
+        th.Property("ended_at", th.StringType),
+        th.Property("created_at", th.IntegerType),
+        th.Property("updated_at", th.IntegerType),
+        th.Property("recording_url", th.StringType),
+        th.Property("call_type", th.StringType),
+        th.Property("direction", th.StringType),
+        th.Property("ended_reason", th.StringType),
+        th.Property("phone", th.StringType),
+        th.Property("fin_recording_url", th.StringType),
+        th.Property("fin_transcription_url", th.StringType),
+
+    ).to_dict()
+
+    def get_url_params(self, context, next_page_token):
+        params = {}
+        if self.rest_method == "GET":
+            params = {"per_page": 25}
+
+            if next_page_token:
+                page_token = dict(parse_qsl(next_page_token.query))
+                if "page" in page_token:
+                    params["page"] = page_token["page"]
+                else:
+                    params["starting_after"] = next_page_token.path
+        self.logger.info(50 * "-")
+        self.logger.info(f"Params: {params}")
+        self.logger.info(50 * "-")
+        return params
+
+    def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict:
+        """Return a context dictionary for child streams."""
+        if record:
+            return {"call_id": record["id"]}
+
+class CallsStream(IntercomStream):
+    name = "calls"
+    parent_stream_type = CallsListStream
+    state_partitioning_keys = []
+    path = "/calls/{call_id}"
+    replication_key = "updated_at"
+
+    schema = th.PropertiesList(
+        th.Property("type", th.StringType),
+        th.Property("id", th.StringType),
+        th.Property("conversation_id", th.StringType),
+        th.Property("admin_id", th.StringType),
+        th.Property("contact_id", th.StringType),
+        th.Property("state", th.StringType),
+        th.Property("initiated_at", th.StringType),
+        th.Property("answered_at", th.StringType),
+        th.Property("ended_at", th.StringType),
+        th.Property("created_at", th.IntegerType),
+        th.Property("updated_at", th.IntegerType),
+        th.Property("recording_url", th.StringType),
+        th.Property("call_type", th.StringType),
+        th.Property("direction", th.StringType),
+        th.Property("ended_reason", th.StringType),
+        th.Property("phone", th.StringType),
+        th.Property("fin_recording_url", th.StringType),
+        th.Property("fin_transcription_url", th.StringType),
+
+    ).to_dict()
+
+
 class CollectionsStream(IntercomStream):
     name = "collections"
     path = "/help_center/collections"
