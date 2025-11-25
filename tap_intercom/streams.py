@@ -870,8 +870,6 @@ class ContentExportStream(IntercomStream):
         return (timestamp.replace(second=0, microsecond=0, minute=0, hour=timestamp.hour)
                 +timedelta(hours=timestamp.minute//30))
 
-
-
 class ReportExportStream(IntercomStream):
     name = "report_export"
     path = "/export/reporting_data/get_datasets"
@@ -888,10 +886,7 @@ class ReportExportStream(IntercomStream):
             stream_name = self.name
 
         self.get_reports(context, stream_name)
-        # self.logger.info("DOWNLOAD completed")
-        # stream_filename = self.get_filename(self.name)
-        # self.logger.info("FILENAME")
-        # self.logger.info(stream_filename)
+
         file_path = f'/tmp/intercom_data/reporting_data/{stream_name}'
         if os.path.exists(file_path):
             with open(file_path, 'r') as current_file:
@@ -942,12 +937,10 @@ class ReportExportStream(IntercomStream):
 
         file_name = f'{dataset}'
 
-        # with open(f'/tmp/intercom_data/reporting_data/{file_name}', 'wb') as file:
-        with open(f'/Users/daniela.angelova/projects/data-ops-meltano/tmp/{file_name}', 'wb') as file:
+        with open(f'/tmp/intercom_data/reporting_data/{file_name}', 'wb') as file:
             file.write(response.content)
             self.logger.info("Files have been downloaded")
 
-        # self.delete_files(f'/tmp/intercom_data/reporting_data/{file_name}')
 
     def check_status(self, job_identifier: str) -> str:
         response = requests.get(
