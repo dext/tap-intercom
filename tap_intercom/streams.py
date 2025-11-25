@@ -862,7 +862,7 @@ class ContentExportStream(IntercomStream):
         os.remove(file_path)
 
     def get_filename(self):
-        files = os.listdir('/Users/daniela.angelova/projects/data-ops-meltano/extract/tap-intercom/tmp/intercom_data/reporting_data/')
+        files = os.listdir('/tmp/intercom_data/')
         for file in files:
             if re.match(self.name + r'_\d{8}-\d{6}\.csv', file):
                 return file
