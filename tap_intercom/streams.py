@@ -779,6 +779,7 @@ class ContentExportStream(IntercomStream):
         self.check_folder('/tmp/intercom_data')
         if not os.listdir('/tmp/intercom_data'):
             job_identifier = self.get_job_identifier(context)
+            self.logger.info(f"Job identifier: {job_identifier}")
 
             while True:
                 status = self.check_status(job_identifier)
