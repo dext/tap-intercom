@@ -861,10 +861,168 @@ class ContentExportStream(IntercomStream):
         os.remove(file_path)
 
     def get_filename(self):
-        files = os.listdir('/tmp/intercom_data/')
+        files = os.listdir('/Users/daniela.angelova/projects/data-ops-meltano/extract/tap-intercom/tmp/intercom_data/reporting_data/')
         for file in files:
             if re.match(self.name + r'_\d{8}-\d{6}\.csv', file):
                 return file
+
+    def hour_rounder(self, timestamp):
+        return (timestamp.replace(second=0, microsecond=0, minute=0, hour=timestamp.hour)
+                +timedelta(hours=timestamp.minute//30))
+
+
+
+class ReportExportStream(IntercomStream):
+    name = "report_export"
+    path = "/export/reporting_data/get_datasets"
+
+    @property
+    def schema_filepath(self) -> Path:
+        SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
+        return SCHEMAS_DIR / f"{self.name}.json"
+
+    def get_records(self, context):
+        if self.name == "tickets_report":
+            stream_name = "tickets"
+        else:
+            stream_name = self.name
+
+        self.get_reports(context, stream_name)
+        # self.logger.info("DOWNLOAD completed")
+        # stream_filename = self.get_filename(self.name)
+        # self.logger.info("FILENAME")
+        # self.logger.info(stream_filename)
+        file_path = f'/tmp/intercom_data/reporting_data/{stream_name}'
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as current_file:
+                first_line = current_file.readline()
+                columns = first_line.strip().split(',')
+                self.logger.info(f"Columns: {columns}")
+
+                reader = csv.reader(current_file)
+                for line in reader:
+                    if line != '':
+                        yield dict(zip(columns, line))
+
+            current_time = self.hour_rounder(utc_now()).strftime("%Y-%m-%dT%H:%M:%SZ")
+            self._tap.state['bookmarks'][self.name] = {'replication_key': self.replication_key, 'replication_key_value': current_time}
+
+    def get_reports(self, context, dataset_name):
+        datasets = self.list_datasets()
+        for dataset in datasets:
+            self.logger.info(50 * '=')
+            self.logger.info(dataset["id"])
+            self.logger.info(50 * '=')
+
+            if dataset['id'] == dataset_name:
+
+                self.check_folder('/tmp/intercom_data/reporting_data')
+                if not os.path.exists(f'/tmp/intercom_data/reporting_data/{dataset_name}'):
+                    job_identifier = self.request_data_export(context, dataset)
+
+                    self.check_status(job_identifier)
+
+                    while True:
+                        status = self.check_status(job_identifier)
+                        self.logger.info(f"Status for {dataset['id']} dataset job_identifier({job_identifier}): {status}")
+
+                        if status == 'complete':
+                            break
+                        else:
+                            time.sleep(10)
+
+                    self.download_export(job_identifier, dataset["id"])
+
+
+    def download_export(self, job_identifier: str, dataset):
+        response = requests.get(
+            f"{self.config['base_url']}/download/reporting_data/{job_identifier}",
+            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/octet-stream'}
+        )
+
+        file_name = f'{dataset}'
+
+        # with open(f'/tmp/intercom_data/reporting_data/{file_name}', 'wb') as file:
+        with open(f'/Users/daniela.angelova/projects/data-ops-meltano/tmp/{file_name}', 'wb') as file:
+            file.write(response.content)
+            self.logger.info("Files have been downloaded")
+
+        # self.delete_files(f'/tmp/intercom_data/reporting_data/{file_name}')
+
+    def check_status(self, job_identifier: str) -> str:
+        response = requests.get(
+            f"{self.config['base_url']}/export/reporting_data/{job_identifier}",
+            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/json'}
+        )
+        self.logger.info(50 * '=')
+        self.logger.info(response.json())
+        self.logger.info(50 * '=')
+        return response.json()["status"]
+
+    def request_data_export(self,context, dataset) -> dict:
+        """Fetch the available datasets and their attributes."""
+        start_date, end_date = self.get_payload(context)
+        payload = {
+            "dataset_id": dataset["id"],
+            "attribute_ids": [attr["id"] for attr in dataset["attributes"]],
+            "start_time": start_date,
+            "end_time": end_date
+        }
+        # self.logger.info(payload)
+        response = requests.post(
+            f"{self.config['base_url']}/export/reporting_data/enqueue",
+            headers={'Authorization': f'Bearer {self.config.get("access_token")}',
+            'Accept': 'application/json'},
+            json=payload
+        )
+        self.logger.info(response.json())
+        return response.json().get("job_identifier")
+
+
+    def get_payload(self, context):
+        start_date = self.get_starting_replication_key_value(context)
+
+        if not start_date:
+            start_date = self.config.get("start_date")
+
+        self.logger.info(f"Start date: {start_date}")
+        self.logger.info(f"End date: {self.config.get('end_date')}")
+
+        if type(start_date) == str:
+            start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
+
+        end_date = self.config.get("end_date")
+        if not end_date:
+            end_date = int(datetime.timestamp(utc_now()))
+
+        if type(end_date) == str:
+            end_date = int(datetime.timestamp(datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%SZ")))
+
+        return start_date, end_date
+
+
+    def list_datasets(self) -> dict:
+        """Fetch the available datasets and their attributes."""
+        self.logger.info("FETCHING DATASET")
+        response = requests.get(
+            f"{self.config['base_url']}/export/reporting_data/get_datasets",
+            headers={'Authorization': f'Bearer {self.config.get("access_token")}'}
+        )
+        self.logger.info(response.json())
+        return response.json()["data"]
+
+    def get_filename(self):
+        files = os.listdir('/tmp/intercom_data/reporting_data')
+        self.logger.info(files)
+        for file in files:
+            return file
+
+    def check_folder(self, folder: str):
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+    def delete_files(self, file_path: str):
+        os.remove(file_path)
 
     def hour_rounder(self, timestamp):
         return (timestamp.replace(second=0, microsecond=0, minute=0, hour=timestamp.hour)

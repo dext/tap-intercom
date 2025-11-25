@@ -1,0 +1,2252 @@
+{"type": "object", "properties": {
+  "action_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "action_performed_by_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "action_team_assignee_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "action_teammate_assignee_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_mentioned_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_assignee_at_action_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "action_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "action_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "response_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "response_time_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "response_time_excluding_bot_inbox": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "response_time_excluding_bot_inbox_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_first_response_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_first_response_time_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_subsequent_response_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_subsequent_response_time_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_time_to_close": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_time_to_close_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_first_response_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_first_response_time_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_subsequent_response_time": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_subsequent_response_time_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_time_to_close": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "teammate_time_to_close_in_office_hours": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "action_by_automation": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "currently_assigned_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "channel": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_started_by": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_tag_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "currently_assigned_team_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "topics": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_started_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "reply_participant_teammate_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_teammate_rating": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fin_ai_agent_rating": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "last_rated_teammate_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_tag_ids.1": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_started_by.1": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "company_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "company_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "company_plan_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "company_size": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "company_manual_tag_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_location_continent_code": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_location_country_code": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_manual_tag_ids": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_role": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_email": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_pseudonym": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "language": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_role.1": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "article_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Csat Overall Experience": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_owner_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_owner_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_owner_email": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_owner_role": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_title": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_lead_source": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "country": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Sf Account Id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Record Type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Parent Account": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Lead Source detail": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "plan": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "timezone": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "company_crn": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "CSat Feedback": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "team_created_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "plan_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest Precision NPS score": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest Precision NPS feedback": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "self_assessment": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "User created date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "user_country": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest Prepare NPS score": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest Prepare NPS Feedback": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest Commerce NPS score": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest Commerce NPS feedback": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Prepare_usage_frequency": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Prepare_purchase_decision": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Aircall Tags": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Referral code": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Product CSAT Score v1": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Product CSAT v1 Feedback": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_user_url": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_user_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_user_state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_user_created_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_user_updated_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_team_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_team_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_team_url": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_team_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_team_state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_team_member_count": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_client_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_client_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_client_url": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_subscription_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_subscription_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_subscription_intent": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_subscription_payment_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_subscription_state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_subscription_created_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_subscription_updated_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_entitlements_bulk_export": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_entitlements_auto_export": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_entitlements_catch_me_up": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_entitlements_csv": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_accounting_integrations": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_sales_integrations": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_expenses_integrations": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_firm_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_firm_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "commerce_firm_url": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "unification_opted_in": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "experience": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest CSAT Score": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Latest CSAT Feedback": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Email Opt Out": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "research_unsubscribed": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "unification_invited": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Receive marketing campaigns": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "fr_ebics_supplier": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Hubspot Intercom Notes": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has left AppStore review": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "direct_survey_multi_entity": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "campaign_attended": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "campaign_registered": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "campaign_recent_update": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "trial_nonconversion_reason": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "hubspot_workflow": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "hubspot_stage": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "active_partner_companies": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "active_partner_companies_updated": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "active_client_companies": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "active_client_companies_updated": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "active_direct_companies": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "active_direct_companies_updated": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "oct2025_promo_eligible_user": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "sf_account_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_segmentation_industry_code": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_segmentation_use_cases": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Account Product Type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "RB Account Type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Franchise company": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Nature of Client": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Practice Clients": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Dext Platform Status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Method of Sign-up": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Tier of Firm": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Country RB": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Dext Platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Precision Product Status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Precision Subscription Status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commerce Product Status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Reseller Partnership": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "payment Provider": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Renewal Date confirmed": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Trail end date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Last Invoice Amount": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Last invoice MRR": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Last Invoice Date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Date of First Subscription": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commitment Term": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commitment Start Date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commitment End Date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commitment Renewal Date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Dates until Renewal": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "ITSA Product Status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Prepare product status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Recordtype Name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Account Owner": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Billing Street": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Billing City": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Billing state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Billing postcode": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Billing Country": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Precision Trial Started At": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Precision Account Created Date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_group_Accounting_software_integration_primary": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_Account_solo_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_solo_product_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_group_Secondary_Accounting_Software_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_demo_account": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_dext_platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_precision_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_Prepare_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_affected_account_precision_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_affected_account_prepare_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_partner_account_precision_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_partner_account_prepare_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_prepare_product_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_affected_account_prepare_product_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_partner_account_prepare_product_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_affected_account_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment Base": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "creation_source": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_segmentation_company_role": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_segmentation_company_size": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_segmentation_discovered_by": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_created_date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_prepare_billing_platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Segment_account_precision_billing_platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "segment_affected_account_crn": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Success Owner": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_first_subscription_date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_created_date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "segment_account_owner": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_country": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_currency": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_internal_test_account": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_internal_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_product_modules": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_product_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_product_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_sales_region": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_self_paying": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_solo": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_solo_business_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_unification_stage": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_backup_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_billing_platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_country": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_currency": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_demo_account": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_first_subscription_date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_internal_test_account": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_internal_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_primary_software_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_product_modules": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_product_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_product_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_sales_region": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_secondary_software_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_self_paying": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_solo": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_solo_business_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_unification_stage": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "precision_product_access": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "prepare_product_access": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_backup_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_billing_platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "segment_account_country": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_product_modules": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_segmentation_use_cases": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_segmentation_used_software": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "initiating_source": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_primary_software_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_product_name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_product_status": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_product_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_sales_region": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_secondary_software_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_self_paying": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_solo": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_solo_business_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_unification_stage": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_backup_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_billing_platform": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_country": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_created_date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_crn": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_currency": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_demo_account": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_first_subscription_date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_internal_test_account": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "partner_account_internal_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_secondary_software_integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "affected_account_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "account_created_date": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has Integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has added at least one user": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Account Users": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "30-Day Item Submitted Volume": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "30-Day Login Volume": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Used Mobile Submission - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Used Web or Email Submission - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Published Items - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Exported Items - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Added Rule - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Created Expense Report - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Created Approval Workflow - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Created Mileage Claim - 30d": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has used Autopublish": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has used Autoexpense": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Current Tenure": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has used Vault": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has used Bank Statements": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has used Supplier Statements": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Has used Bank Feed": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "oct2025_promo_eligible_partner": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "oct2025_promo_feature": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "oct2025_promo_savings": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "oct2025_promo_url": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "oct2025_promo_cohort_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Imported via standalone": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Auto-translated": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "External ID": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Fin AI Agent: Preview": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "AI Tone of Voice": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "AI Answer Length": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "AI Pronoun Formality": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Workflow: Preview": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Fin AI Agent resolution state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Last outbound call state": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Workspace phone number": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Merged": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Fin AI Agent: Action used in reply": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Fin AI Agent: Fin workflow used": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "AI Topic": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "AI Subtopic": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "AI Issue summary": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Query Type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Brand": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Created by app package code": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Replying from WhatsApp": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Slack workspace": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Slack channel": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "# bookkeeping clients": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "admin_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "AI Selected Category": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Area": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Area to improve:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Category": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commerce Accounting Integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commerce Active Team": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commerce Expense Integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Commerce Sales Integration": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Connection Name:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Conversation Summary": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Details": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Dext Product": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Did you sort this with your Account Manager?": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Disable auto-notifications:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Empty VM?": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalated to AM?": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalated to Specialist:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalation Notes:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Escalation Reason": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Feature Request (Prepare/Precision):": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Fin Reporting": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "GBP Approved refund amount:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "GBP Refund amount field:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Partner Churn Reason:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Prepare Category I:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Prepare Category II:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Prepare Duplicate:": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Refund request?": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_case_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_owner_id.1": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_response_message": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "salesforce_response_outcome": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "SF Contact ID": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Support agent name": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Thank you reply?": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Was the issue resolved?": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Customer reports": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Ticket category": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "Copilot used": {
+    "type": [
+      "string",
+      "null"
+    ]
+  }
+}}

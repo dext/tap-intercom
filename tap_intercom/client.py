@@ -134,6 +134,7 @@ class IntercomStream(RESTStream):
             self.logger.info(50 * "-")
             self.logger.info(f"Request body: {body}")
             self.logger.info(50 * "-")
+
             return body
         else:
             return None
