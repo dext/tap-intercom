@@ -1,6 +1,7 @@
 """Stream type classes for tap-intercom."""
 
 from __future__ import annotations
+from tap_intercom.client import IntercomStream
 
 from singer_sdk.helpers._util import utc_now
 
@@ -33,6 +34,9 @@ import os
 import re
 
 import zipfile
+
+import asyncio
+
 
 
 class ConversationsStream(IntercomStream):
@@ -230,9 +234,31 @@ class ConversationsStream(IntercomStream):
         ),
     ).to_dict()
 
-    def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict:
-        """Return a context dictionary for child streams."""
-        return {"conversation_id": record["id"]}
+    def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict | None:
+        """Return a batched context of conversation IDs for child streams.
+
+        Accumulates conversation IDs in an internal buffer and returns a batch
+        of size `parts_batch_size` (default: 10) as `{"conversation_ids": [...]}`.
+        Returns `None` until the buffer reaches the batch size.
+        """
+        if not hasattr(self, "_conv_id_buffer"):
+            self._conv_id_buffer: List[str] = []
+
+        batch_size = int(self.config.get("parts_batch_size", 10))
+        cid = record.get("id")
+        if cid is None:
+            return None
+
+        if batch_size <= 1:
+            return {"conversation_id": cid}
+
+        self._conv_id_buffer.append(cid)
+        if len(self._conv_id_buffer) >= batch_size:
+            ids = list(self._conv_id_buffer)
+            self._conv_id_buffer.clear()
+            return {"conversation_ids": ids}
+
+        return None
 
 
 class ConversationPartsStream(IntercomStream):
@@ -284,6 +310,49 @@ class ConversationPartsStream(IntercomStream):
         Property("external_id", StringType),
         Property("redacted", BooleanType),
     ).to_dict()
+
+    async def _fetch_conversation(self, conversation_id: str) -> Dict[str, Any]:
+        url = f"{self.url_base}/conversations/{conversation_id}"
+        headers = {
+            "Authorization": f"Bearer {self.config.get('access_token')}",
+            "Accept": "application/json",
+        }
+        def _do_request():
+            return requests.get(url, headers=headers, timeout=30)
+        resp = await asyncio.to_thread(_do_request)
+        resp.raise_for_status()
+        return resp.json()
+
+    async def _sync_parallel(self, conversation_ids: List[str], concurrency: int = 10) -> None:
+        sem = asyncio.Semaphore(concurrency)
+
+        async def _bounded_fetch(cid: str):
+            async with sem:
+                data = await self._fetch_conversation(cid)
+
+                for rec in data.get("conversation_parts", {}).get("conversation_parts", {}):
+                    try:
+                        self._write_record_message(rec)
+
+                    except Exception as e:
+                        self.logger.error(f"Error: {e}")
+
+        await asyncio.gather(*[_bounded_fetch(cid) for cid in conversation_ids])
+
+    def sync(self, context: dict):
+        self._write_schema_message()
+        ids = None
+        if context and isinstance(context, dict):
+            ids = context.get("conversation_ids") or context.get("conversation_id")
+        if ids:
+            try:
+                self.logger.info(f"--------Parallel conversation parts sync--------")
+                asyncio.run(self._sync_parallel(ids, concurrency=int(self.config.get("parts_concurrency", 10))))
+            except Exception as e:
+                self.logger.error(f"Parallel conversation parts sync failed: {e}")
+        else:
+            super().sync(context)
+
 
 
 class ContactsListStream(IntercomStream):
