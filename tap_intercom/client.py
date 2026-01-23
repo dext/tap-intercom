@@ -116,7 +116,9 @@ class IntercomStream(RESTStream):
         if self.rest_method == "POST":
             body = {"sort": {"field": "updated_at", "order": "ascending"}}
             value = []
-            start_date = self.config.get("start_date")
+            start_date = self.get_starting_replication_key_value(context)
+            if not start_date:
+                start_date = self.config.get("start_date")
             if start_date:
                 if type(start_date) == str:
                     start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
