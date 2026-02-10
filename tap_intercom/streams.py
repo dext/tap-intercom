@@ -35,8 +35,10 @@ import os
 import re
 
 import zipfile
+import aiohttp
 
 import asyncio
+
 
 
 
@@ -326,19 +328,21 @@ class ConversationPartsStream(IntercomStream):
 
     async def _sync_parallel(self, conversation_ids: List[str], concurrency: int = 10) -> None:
         sem = asyncio.Semaphore(concurrency)
+        headers = {
+            "Authorization": f"Bearer {self.config.get('access_token')}",
+            "Accept": "application/json",
+        }
+        async with aiohttp.ClientSession(headers=headers) as session:
+            async def _bounded_fetch(cid: str):
+                async with sem:
+                    data = await self._fetch_conversation(cid, session)
+                    for rec in data.get("conversation_parts", {}).get("conversation_parts", {}):
+                        try:
+                            self._write_record_message(rec)
+                        except Exception as e:
+                            self.logger.error(f"Error: {e}")
 
-        async def _bounded_fetch(cid: str):
-            async with sem:
-                data = await self._fetch_conversation(cid)
-
-                for rec in data.get("conversation_parts", {}).get("conversation_parts", {}):
-                    try:
-                        self._write_record_message(rec)
-
-                    except Exception as e:
-                        self.logger.error(f"Error: {e}")
-
-        await asyncio.gather(*[_bounded_fetch(cid) for cid in conversation_ids])
+            await asyncio.gather(*[_bounded_fetch(cid) for cid in conversation_ids])
 
     def sync(self, context: dict):
         self._write_schema_message()
@@ -359,7 +363,7 @@ class ConversationPartsStream(IntercomStream):
 class ContactsListStream(IntercomStream):
     name = "contacts_list"
     path = "/contacts/search"
-    records_jsonpath = "$.data[*]"
+    # records_jsonpath = "$.data[*]"
     rest_method = "POST"
 
     schema = th.PropertiesList(
@@ -437,9 +441,41 @@ class ContactsListStream(IntercomStream):
         ),
     ).to_dict()
 
-    def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict:
-        """Return a context dictionary for child streams."""
-        return {"contact_id": record["id"]}
+    # def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict:
+    #     """Return a context dictionary for child streams."""
+    #     return {"contact_id": record["id"]}
+
+    def get_child_context(self, record: dict, context: t.Optional[dict]) -> dict | None:
+        """Return a batched context of conversation IDs for child streams.
+
+        Accumulates conversation IDs in an internal buffer and returns a batch
+        of size `parts_batch_size` (default: 50) as `{"contact_ids": [...]}`.
+        Returns `None` until the buffer reaches the batch size.
+        """
+        self.logger.info(50 * "-")
+        self.logger.info(f"Record for context: {record}")
+        self.logger.info(record.get("pages").get("next"))
+        self.logger.info(50 * "-")
+        return
+        if not hasattr(self, "_contact_id_buffer"):
+            self._contact_id_buffer: List[str] = []
+
+        batch_size = int(self.config.get("parts_batch_size", 50))
+        cid = record.get("id")
+        if cid is None:
+            return None
+
+        if batch_size <= 1:
+            return {"contact_id": cid}
+
+        self._contact_id_buffer.append(cid)
+        if (len(self._contact_id_buffer) >= batch_size) or ("next" not in record.get("pages")):
+            ids = list(self._contact_id_buffer)
+            self._contact_id_buffer.clear()
+            return {"contact_ids": ids}
+
+        return None
+
 
 class ContactsStream(IntercomStream):
     name = "contacts"
@@ -550,11 +586,45 @@ class ContactsStream(IntercomStream):
         th.Property("referrer", th.StringType),
     ).to_dict()
 
+    async def _fetch_contact(self, contact_id: str, session: aiohttp.ClientSession) -> Dict[str, Any]:
+        url = f"{self.url_base}/contacts/{contact_id}"
+        async with session.get(url, timeout=30) as resp:
+            resp.raise_for_status()
+            return await resp.json()
+
+    async def _sync_parallel(self, contact_ids: List[str], concurrency: int = 50) -> None:
+        sem = asyncio.Semaphore(concurrency)
+        headers = {
+            "Authorization": f"Bearer {self.config.get('access_token')}",
+            "Accept": "application/json",
+        }
+        async with aiohttp.ClientSession(headers=headers) as session:
+            async def _bounded_fetch(cid: str):
+                async with sem:
+                    data = await self._fetch_contact(cid, session)
+                    try:
+                        self._write_record_message(data)
+                    except Exception as e:
+                        self.logger.error(f"Error: {e}")
+
+            await asyncio.gather(*[_bounded_fetch(cid) for cid in contact_ids])
+
     def sync(self, context: dict):
-        try:
-            super().sync(context)
-        except Exception as e:
-            self.logger.error(f"Error fetching contacts: {e}")
+        self._write_schema_message()
+        ids = None
+        if context and isinstance(context, dict):
+            ids = context.get("contact_ids") or context.get("contact_id")
+        if ids:
+            try:
+                # self.logger.info(f"--------Parallel contacts sync--------")
+                asyncio.run(self._sync_parallel(ids, concurrency=int(self.config.get("parts_concurrency", 50))))
+            except Exception as e:
+                self.logger.error(f"Parallel contacts sync failed: {e}")
+        else:
+            try:
+                super().sync(context)
+            except Exception as e:
+                self.logger.error(f"Error fetching contacts: {e}")
 
 
 class CollectionsStream(IntercomStream):

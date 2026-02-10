@@ -35,6 +35,9 @@ from singer_sdk.pagination import BaseHATEOASPaginator
 class IntercomPaginator(BaseHATEOASPaginator):
     def get_next_url(self, response):
         data = response.json().get("pages", {})
+        print(50 * "***#")
+        print(f"Pagination data: {data}")
+        print(50 * "***#")
 
         if data.get("next") is not None:
             if "starting_after" in data.get("next"):
@@ -131,7 +134,7 @@ class IntercomStream(RESTStream):
             body["query"] = {"operator": "AND", "value": value}
 
             if next_page_token:
-                body["pagination"] = {"per_page": 20, "starting_after": next_page_token.path}
+                body["pagination"] = {"per_page": 50, "starting_after": next_page_token.path}
 
             self.logger.info(50 * "-")
             self.logger.info(f"Request body: {body}")
