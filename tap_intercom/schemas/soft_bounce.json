@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"receipt_id": {"type": ["string", "null"]}, "soft_bounced_at": {"type": ["string", "null"]}}}

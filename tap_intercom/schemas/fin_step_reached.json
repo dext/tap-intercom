@@ -1,0 +1,38 @@
+{"type": "object", "properties": {
+  "receipt_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "involved_at": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "content_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "content_type": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "ruleset_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  },
+  "conversation_id": {
+    "type": [
+      "string",
+      "null"
+    ]
+  }
+}}

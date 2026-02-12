@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"receipt_id": {"type": ["string", "null"]}, "reacted_at": {"type": ["string", "null"]}, "reaction": {"type": ["string", "null"]}}}

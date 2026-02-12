@@ -7,6 +7,7 @@ from singer_sdk.helpers._util import utc_now
 
 import typing as t
 import requests
+import aiohttp
 from pathlib import Path
 from typing import Iterable
 import csv
@@ -827,51 +828,61 @@ class ContentExportStream(IntercomStream):
         return SCHEMAS_DIR / f"{self.name}.json"
 
     def get_records(self, context):
-        self.request_content_export(context)
+        asyncio.run(self.request_content_export_async(context))
         stream_filename = self.get_filename()
 
         if stream_filename:
-            with open(f'/tmp/intercom_data/{stream_filename}', 'r') as current_file:
+            with open(f"/tmp/intercom_data/content_export/{stream_filename}", "r") as current_file:
                 first_line = current_file.readline()
-                columns = first_line.strip().split(',')
+                columns = first_line.strip().split(",")
                 self.logger.info(f"Columns: {columns}")
 
                 reader = csv.reader(current_file)
                 for line in reader:
-                    if line != '':
+                    if line != "":
                         yield dict(zip(columns, line))
 
             current_time = self.hour_rounder(utc_now()).strftime("%Y-%m-%dT%H:%M:%SZ")
-            self._tap.state['bookmarks'][self.name] = {'replication_key': self.replication_key, 'replication_key_value': current_time}
+            self._tap.state["bookmarks"][self.name] = {"replication_key": self.replication_key, "replication_key_value": current_time}
 
-    def request_content_export(self, context):
-        self.check_folder('/tmp/intercom_data')
-        if not os.listdir('/tmp/intercom_data'):
-            job_identifier = self.get_job_identifier(context)
+
+    async def request_content_export_async(self, context):
+        self.check_folder("/tmp/intercom_data/content_export")
+        if os.listdir("/tmp/intercom_data/content_export"):
+            return
+
+        async with aiohttp.ClientSession() as session:
+            job_identifier = await self.get_job_identifier(session, context)
             self.logger.info(f"Job identifier: {job_identifier}")
 
             while True:
-                status = self.check_status(job_identifier)
+                status = await self.check_status(session, job_identifier)
                 self.logger.info(f"Status for job_identifier({job_identifier}): {status}")
 
-                if status == 'completed':
+                if status == "completed":
                     break
-                else:
-                    time.sleep(10)
 
-            self.download_export(job_identifier)
+                await asyncio.sleep(10)
 
-    def get_job_identifier(self, context):
+            await self.download_export(session, job_identifier)
+
+    async def get_job_identifier(self, session: aiohttp.ClientSession, context):
         payload = self.get_payload(context)
+        self.logger.info("Requesting content export with payload:")
         self.logger.info(payload)
-        response = requests.post(
+        async with session.post(
             f"{self.config['base_url']}/export/content/data",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}',
-            'Accept': 'application/json'},
-            json=payload
-        )
-        self.logger.info(response.json())
-        return response.json().get("job_identifier")
+            headers={
+                "Authorization": f"Bearer {self.config.get('access_token')}",
+                "Accept": "application/json",
+            },
+            json=payload,
+            timeout=60,
+        ) as response:
+            response.raise_for_status()
+            body = await response.json()
+            self.logger.info(body)
+            return body.get("job_identifier")
 
     def get_payload(self, context):
         start_date = self.get_starting_replication_key_value(context)
@@ -896,28 +907,41 @@ class ContentExportStream(IntercomStream):
         self.logger.info(payload)
         return payload
 
-    def check_status(self, job_identifier: str) -> str:
-        response = requests.get(
+    async def check_status(self, session: aiohttp.ClientSession, job_identifier: str) -> str:
+        async with session.get(
             f"{self.config['base_url']}/export/content/data/{job_identifier}",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/json'}
-        )
-        self.logger.info(50 * '=')
-        self.logger.info(response.json())
-        self.logger.info(50 * '=')
-        return response.json()["status"]
+            headers={
+                "Authorization": f"Bearer {self.config.get('access_token')}",
+                "Accept": "application/json",
+            },
+            timeout=60,
+        ) as response:
+            response.raise_for_status()
+            body = await response.json()
+            self.logger.info(50 * "=")
+            self.logger.info(body)
+            self.logger.info(50 * "=")
+            return body["status"]
 
-    def download_export(self, job_identifier: str):
-        response = requests.get(
+    async def download_export(self, session: aiohttp.ClientSession, job_identifier: str):
+        async with session.get(
             f"{self.config['base_url']}/download/content/data/{job_identifier}",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/octet-stream'}
-        )
+            headers={
+                "Authorization": f"Bearer {self.config.get('access_token')}",
+                "Accept": "application/octet-stream",
+            },
+            timeout=300,
+        ) as response:
+            response.raise_for_status()
+            content = await response.read()
 
-        file_name = f'tmp_intercom_data.zip'
-        with open(f'/tmp/intercom_data/{file_name}', 'wb') as file:
-            file.write(response.content)
+        file_name = "tmp_intercom_data.zip"
+        with open(f"/tmp/intercom_data/content_export/{file_name}", "wb") as file:
+            file.write(content)
             self.logger.info("Files have been downloaded")
-        self.decompress_zip(f'/tmp/intercom_data/{file_name}')
-        self.delete_zipfile(f'/tmp/intercom_data/{file_name}')
+
+        self.decompress_zip(f"/tmp/intercom_data/content_export/{file_name}")
+        self.delete_zipfile(f"/tmp/intercom_data/content_export/{file_name}")
 
     def check_folder(self, folder: str):
         if not os.path.exists(folder):
@@ -925,13 +949,13 @@ class ContentExportStream(IntercomStream):
 
     def decompress_zip(self, file_path: str):
         with zipfile.ZipFile(file_path, 'r') as zip_ref:
-            zip_ref.extractall("/tmp/intercom_data/")
+            zip_ref.extractall("/tmp/intercom_data/content_export/")
 
     def delete_zipfile(self, file_path: str):
         os.remove(file_path)
 
     def get_filename(self):
-        files = os.listdir('/tmp/intercom_data/')
+        files = os.listdir('/tmp/intercom_data/content_export')
         for file in files:
             if re.match(self.name + r'_\d{8}-\d{6}\.csv', file):
                 return file
@@ -955,91 +979,111 @@ class ReportExportStream(IntercomStream):
         else:
             stream_name = self.name
 
-        self.get_reports(context, stream_name)
+        asyncio.run(self.get_reports_async(context, stream_name))
 
-        file_path = f'/tmp/intercom_data/reporting_data/{stream_name}'
+        file_path = f"/tmp/intercom_data/reporting_data/{stream_name}"
         if os.path.exists(file_path):
-            with open(file_path, 'r') as current_file:
+            with open(file_path, "r") as current_file:
                 first_line = current_file.readline()
-                columns = first_line.strip().split(',')
+                columns = first_line.strip().split(",")
                 self.logger.info(f"Columns: {columns}")
 
                 reader = csv.reader(current_file)
                 for line in reader:
-                    if line != '':
+                    if line != "":
                         yield dict(zip(columns, line))
 
             current_time = self.hour_rounder(utc_now()).strftime("%Y-%m-%dT%H:%M:%SZ")
-            self._tap.state['bookmarks'][self.name] = {'replication_key': self.replication_key, 'replication_key_value': current_time}
+            self._tap.state["bookmarks"][self.name] = {"replication_key": self.replication_key, "replication_key_value": current_time}
 
-    def get_reports(self, context, dataset_name):
-        datasets = self.list_datasets()
-        for dataset in datasets:
-            self.logger.info(50 * '=')
-            self.logger.info(dataset["id"])
-            self.logger.info(50 * '=')
+    async def get_reports_async(self, context, dataset_name):
+        async with aiohttp.ClientSession() as session:
+            datasets = await self.list_datasets(session)
+            dataset = next((ds for ds in datasets if ds.get("id") == dataset_name), None)
 
-            if dataset['id'] == dataset_name:
+            if not dataset:
+                self.logger.warning(f"Dataset {dataset_name} not found; skipping export")
+                return
 
-                self.check_folder('/tmp/intercom_data/reporting_data')
-                if not os.path.exists(f'/tmp/intercom_data/reporting_data/{dataset_name}'):
-                    job_identifier = self.request_data_export(context, dataset)
+            self.logger.info(50 * "=")
+            self.logger.info(dataset_name)
+            self.logger.info(50 * "=")
 
-                    self.check_status(job_identifier)
+            self.check_folder("/tmp/intercom_data/reporting_data")
+            if os.path.exists(f"/tmp/intercom_data/reporting_data/{dataset_name}"):
+                return
 
-                    while True:
-                        status = self.check_status(job_identifier)
-                        self.logger.info(f"Status for {dataset['id']} dataset job_identifier({job_identifier}): {status}")
+            job_identifier = await self.request_data_export(session, context, dataset)
 
-                        if status == 'complete':
-                            break
-                        else:
-                            time.sleep(10)
+            while True:
+                status = await self.check_status(session, job_identifier)
+                self.logger.info(f"Status for {dataset['id']} dataset job_identifier({job_identifier}): {status}")
 
-                    self.download_export(job_identifier, dataset["id"])
+                if status == "complete":
+                    break
+
+                await asyncio.sleep(10)
+
+            await self.download_export(session, job_identifier, dataset["id"])
 
 
-    def download_export(self, job_identifier: str, dataset):
-        response = requests.get(
+    async def download_export(self, session: aiohttp.ClientSession, job_identifier: str, dataset):
+        async with session.get(
             f"{self.config['base_url']}/download/reporting_data/{job_identifier}",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/octet-stream'}
-        )
+            headers={
+                "Authorization": f"Bearer {self.config.get('access_token')}",
+                "Accept": "application/octet-stream",
+            },
+            timeout=300,
+        ) as response:
+            response.raise_for_status()
+            content = await response.read()
 
-        file_name = f'{dataset}'
+        file_name = f"{dataset}"
 
-        with open(f'/tmp/intercom_data/reporting_data/{file_name}', 'wb') as file:
-            file.write(response.content)
+        with open(f"/tmp/intercom_data/reporting_data/{file_name}", "wb") as file:
+            file.write(content)
             self.logger.info("Files have been downloaded")
 
 
-    def check_status(self, job_identifier: str) -> str:
-        response = requests.get(
+    async def check_status(self, session: aiohttp.ClientSession, job_identifier: str) -> str:
+        async with session.get(
             f"{self.config['base_url']}/export/reporting_data/{job_identifier}",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}', 'Accept': 'application/json'}
-        )
-        self.logger.info(50 * '=')
-        self.logger.info(response.json())
-        self.logger.info(50 * '=')
-        return response.json()["status"]
+            headers={
+                "Authorization": f"Bearer {self.config.get('access_token')}",
+                "Accept": "application/json",
+            },
+            timeout=60,
+        ) as response:
+            response.raise_for_status()
+            body = await response.json()
+            self.logger.info(50 * "=")
+            self.logger.info(body)
+            self.logger.info(50 * "=")
+            return body["status"]
 
-    def request_data_export(self,context, dataset) -> dict:
+    async def request_data_export(self, session: aiohttp.ClientSession, context, dataset) -> dict:
         """Fetch the available datasets and their attributes."""
         start_date, end_date = self.get_payload(context)
         payload = {
             "dataset_id": dataset["id"],
             "attribute_ids": [attr["id"] for attr in dataset["attributes"]],
             "start_time": start_date,
-            "end_time": end_date
+            "end_time": end_date,
         }
-        # self.logger.info(payload)
-        response = requests.post(
+        async with session.post(
             f"{self.config['base_url']}/export/reporting_data/enqueue",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}',
-            'Accept': 'application/json'},
-            json=payload
-        )
-        self.logger.info(response.json())
-        return response.json().get("job_identifier")
+            headers={
+                "Authorization": f"Bearer {self.config.get('access_token')}",
+                "Accept": "application/json",
+            },
+            json=payload,
+            timeout=60,
+        ) as response:
+            response.raise_for_status()
+            body = await response.json()
+            self.logger.info(body)
+            return body.get("job_identifier")
 
 
     def get_payload(self, context):
@@ -1064,15 +1108,18 @@ class ReportExportStream(IntercomStream):
         return start_date, end_date
 
 
-    def list_datasets(self) -> dict:
+    async def list_datasets(self, session: aiohttp.ClientSession) -> dict:
         """Fetch the available datasets and their attributes."""
         self.logger.info("FETCHING DATASET")
-        response = requests.get(
+        async with session.get(
             f"{self.config['base_url']}/export/reporting_data/get_datasets",
-            headers={'Authorization': f'Bearer {self.config.get("access_token")}'}
-        )
-        self.logger.info(response.json())
-        return response.json()["data"]
+            headers={"Authorization": f"Bearer {self.config.get('access_token')}"},
+            timeout=60,
+        ) as response:
+            response.raise_for_status()
+            body = await response.json()
+            self.logger.info(body)
+            return body["data"]
 
     def get_filename(self):
         files = os.listdir('/tmp/intercom_data/reporting_data')
