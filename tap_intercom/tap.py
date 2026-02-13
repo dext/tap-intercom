@@ -84,7 +84,7 @@ REPORTING_EXPORT_STREAMS = {
 REPLICATION_KEY_MAPPING = {
     "conversations": "updated_at",
     "conversation_parts": "updated_at",
-    "contacts_list": None,
+    "contacts_list": "updated_at",
     "contacts": "updated_at",
     "collections": "updated_at",
     "events": None,
